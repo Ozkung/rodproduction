@@ -32,6 +32,8 @@
     "@nuxtjs/vuetify": "^1.12.3",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.5.1",
-    "push-dir": "^0.4.1"
+    "push-dir": "^0.4.1",
+    "sass": "^1.53.0",
+    "sass-loader": "^10.3.1"
   }
 }

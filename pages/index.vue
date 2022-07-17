@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar />
+    <navbar ref="nav" @trick="openNav" />
     <v-carousel
       cycle
       height="650"
@@ -15,110 +15,54 @@
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
-
-    <div
-      style="
-        margin-top: 50px;
-        padding: 0px 270px;
-        font-size: 72px;
-        font-weight: 600;
-      "
-    >
-      REELS
+    <div class="title_point">REELS</div>
+    <v-container>
+      <div class="d-flex justify-xl-center justify-lg-start overflow-x-auto">
+        <div v-for="(item, index) in reel" :key="index" class="mgrid1">
+          <v-card max-width="400">
+            <v-img :src="item.url" height="200px"></v-img>
+          </v-card>
+        </div>
+      </div>
+    </v-container>
+    <div align="end" class="more_point">
+      <span>MORE...</span>
     </div>
-    <div style="padding: 0px 270px" class="d-flex">
-      <v-card class="mx-auto" max-width="400">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-          height="200px"
-        ></v-img>
-      </v-card>
-      <v-card class="mx-auto" max-width="400">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-          height="200px"
-        ></v-img>
-      </v-card>
-      <v-card class="mx-auto" max-width="400">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-          height="200px"
-        ></v-img>
-      </v-card>
+    <div class="title_point">SERVICES</div>
+    <v-container>
+      <div class="d-flex justify-xl-center justify-lg-start overflow-x-auto">
+        <v-card
+          class="mgrid"
+          max-width="300"
+          v-for="(item, index) in services"
+          :key="index"
+        >
+          <v-img :src="item.url" height="200px"></v-img>
+          <v-card-title> {{ item.title }} </v-card-title>
+          <v-card-subtitle> {{ item.description }} </v-card-subtitle>
+        </v-card>
+      </div>
+    </v-container>
+    <div align="end" class="more_point">
+      <span>MORE...</span>
     </div>
-    <div
-      align="end"
-      style="
-        margin-top: 25px;
-        padding: 0px 270px;
-        font-size: 24px;
-        font-weight: 600;
-      "
-    >
-      MORE...
-    </div>
-    <div
-      style="
-        margin-top: 200px;
-        padding: 0px 270px;
-        font-size: 72px;
-        font-weight: 600;
-      "
-    >
-      SERVICES
-    </div>
-    <div style="padding: 0px 270px" class="d-flex">
-      <v-card class="mx-auto" max-width="300">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-          height="200px"
-        ></v-img>
-        <v-card-title> Top western road trips </v-card-title>
-
-        <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
-      </v-card>
-      <v-card class="mx-auto" max-width="300">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-          height="200px"
-        ></v-img>
-        <v-card-title> Top western road trips </v-card-title>
-
-        <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
-      </v-card>
-      <v-card class="mx-auto" max-width="300">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-          height="200px"
-        ></v-img>
-        <v-card-title> Top western road trips </v-card-title>
-
-        <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
-      </v-card>
-      <v-card class="mx-auto" max-width="300">
-        <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-          height="200px"
-        ></v-img>
-        <v-card-title> Top western road trips </v-card-title>
-
-        <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
-      </v-card>
-    </div>
-    <div
-      align="end"
-      style="
-        margin-top: 25px;
-        padding: 0px 270px;
-        font-size: 24px;
-        font-weight: 600;
-      "
-    >
-      MORE...
-    </div>
-    <div
-      style="background: yellow; margin-top: 200px; width: 100%; height: 200px"
-    ></div>
+    <v-navigation-drawer v-model="drawer" width="100%" fixed>
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <div v-for="item in navItem" :key="item">
+            <v-list-item>
+              <v-list-item-title @click="selectpage(item)">{{
+                item
+              }}</v-list-item-title>
+            </v-list-item>
+          </div>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    <div class="footerProduction"></div>
   </div>
 </template>
 
@@ -129,6 +73,8 @@ export default {
   components: { navbar },
   data() {
     return {
+      drawer: false,
+      group: null,
       colors: [
         'indigo',
         'warning',
@@ -137,7 +83,70 @@ export default {
         'deep-purple accent-4',
       ],
       slides: ['First', 'Second', 'Third'],
+      reel: [
+        {
+          name: 'reel1',
+          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        },
+        {
+          name: 'reel2',
+          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        },
+        {
+          name: 'reel3',
+          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+        },
+      ],
+      services: [
+        {
+          name: 'services1',
+          title: 'Top western road trips',
+          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          description: '1,000 miles of wonder',
+        },
+        {
+          name: 'services2',
+          title: 'Top western road trips',
+          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          description: '1,000 miles of wonder',
+        },
+        {
+          name: 'services3',
+          title: 'Top western road trips',
+          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          description: '1,000 miles of wonder',
+        },
+        {
+          name: 'services4',
+          title: 'Top western road trips',
+          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          description: '1,000 miles of wonder',
+        },
+      ],
+      navItem: ['Home', 'Showreel', 'Services', 'Contact'],
     }
+  },
+  watch: {
+    group() {
+      this.drawer = false
+    },
+    drawer() {
+      if (this.drawer == false) {
+        this.$refs.nav.closeMenu(false)
+      }
+    },
+  },
+  methods: {
+    openNav(item) {
+      this.drawer = item
+    },
+    closeNav() {
+      this.drawer = false
+      // this.$refs.nav.closeMenu(false)
+    },
+    selectpage() {
+      this.drawer = false
+    },
   },
 }
 </script>
@@ -145,5 +154,61 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 .v-application {
   font-family: 'Anton', sans-serif;
+}
+</style>
+<style lang="scss" scoped>
+.title_point {
+  user-select: none;
+  padding: 0px 14%;
+  font-size: 450%;
+  font-weight: 600;
+}
+.more_point {
+  user-select: none;
+  margin-top: 25px;
+  padding: 0px 15%;
+  font-size: 24px;
+  font-weight: 600;
+  span {
+    cursor: pointer;
+  }
+}
+.footerProduction {
+  background: yellow;
+  margin-top: 200px;
+  width: 100%;
+  height: 200px;
+}
+.mgrid1 {
+  margin: 0px 18px;
+  margin-bottom: 25px;
+  &:first-child {
+    margin: {
+      left: 0px;
+      right: 27px;
+    }
+  }
+  &:last-child {
+    margin: {
+      left: 27px;
+      right: 0px;
+    }
+  }
+}
+.mgrid {
+  margin: 0px 18px;
+  margin-bottom: 25px;
+  &:first-child {
+    margin: {
+      left: 0px;
+      right: 27px;
+    }
+  }
+  &:last-child {
+    margin: {
+      left: 27px;
+      right: 0px;
+    }
+  }
 }
 </style>
