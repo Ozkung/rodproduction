@@ -83,6 +83,11 @@ export default {
         'deep-purple accent-4',
       ],
       slides: ['First', 'Second', 'Third'],
+      slidesToken: [
+        { name: 'First', url: 'First' },
+        { name: 'Second', url: 'Second' },
+        { name: 'Third', url: 'Third' },
+      ],
       reel: [
         {
           name: 'reel1',
