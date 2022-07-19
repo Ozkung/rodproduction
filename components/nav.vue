@@ -1,6 +1,6 @@
 <template>
   <div class="nav_main">
-    <div class="logoTitle cursorP">Logo</div>
+    <div class="logoTitle cursorP"><img src="logo.svg" width="26px" /></div>
     <div class="uncheck">
       <div class="pr-5 cursorP">HOME</div>
       <div class="pr-5 cursorP">SHOWREEL</div>
@@ -69,10 +69,9 @@ export default {
 .logoTitle {
   width: 270px;
   height: 100%;
-  background: yellow;
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding-left: 50px;
 }
 .uncheck {
   display: flex;
