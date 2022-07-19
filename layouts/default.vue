@@ -11,7 +11,13 @@ export default {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-html {
+.v-application {
   font-family: 'Anton', sans-serif;
+}
+.footerProduction {
+  background: yellow;
+  margin-top: 200px;
+  width: 100%;
+  height: 200px;
 }
 </style>

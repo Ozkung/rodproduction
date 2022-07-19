@@ -1,11 +1,27 @@
 <template>
   <div class="nav_main">
-    <div class="logoTitle cursorP"><img src="logo.svg" width="26px" /></div>
+    <div class="logoTitle cursorP" @click="rootLink('/')">
+      <img src="logo.svg" width="26px" />
+    </div>
     <div class="uncheck">
-      <div class="pr-5 cursorP">HOME</div>
-      <div class="pr-5 cursorP">SHOWREEL</div>
-      <div class="pr-5 cursorP">SERVICES</div>
-      <div class="pr-5 cursorP">CONTACT</div>
+      <div class="pr-5 cursorP" @click="rootLink('/')">HOME</div>
+      <div class="pr-5 cursorP">
+        <v-menu ref="menu" open-on-click bottom offset-y auto>
+          <template v-slot:activator="{ on, attrs }">
+            <div dark v-bind="attrs" v-on="on">SHOWREEL</div>
+          </template>
+
+          <div class="d-flex" style="background: #fff">
+            <div class="cursorP" v-for="(item, index) in items" :key="index">
+              <div class="ma-2" @click="rootLink(item.path)">
+                {{ item.title }}
+              </div>
+            </div>
+          </div>
+        </v-menu>
+      </div>
+      <div class="pr-5 cursorP" @click="rootLink('/service')">SERVICES</div>
+      <div class="pr-5 cursorP" @click="rootLink('/contact')">CONTACT</div>
     </div>
     <div v-if="windowWidth < 780" class="mx-3">
       <v-app-bar-nav-icon @click.stop="trickMenu()"></v-app-bar-nav-icon>
@@ -20,6 +36,10 @@ export default {
       drawer: false,
       group: null,
       windowWidth: window.innerWidth,
+      items: [
+        { title: 'Video', path: '/video' },
+        { title: 'Image', path: '/image' },
+      ],
     }
   },
   watch: {
@@ -45,6 +65,9 @@ export default {
     },
     closeMenu(item) {
       this.drawer = item
+    },
+    rootLink(item) {
+      this.$router.push({ path: item })
     },
   },
 }

@@ -47,20 +47,7 @@
       <span>MORE...</span>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-        >
-          <div v-for="item in navItem" :key="item">
-            <v-list-item>
-              <v-list-item-title @click="selectpage(item)">{{
-                item
-              }}</v-list-item-title>
-            </v-list-item>
-          </div>
-        </v-list-item-group>
-      </v-list>
+      <list @link="closeNav" />
     </v-navigation-drawer>
     <div class="footerProduction"></div>
   </div>
@@ -68,9 +55,10 @@
 
 <script>
 import navbar from '@/components/nav'
+import list from '@/components/listmenu'
 export default {
   name: 'IndexPage',
-  components: { navbar },
+  components: { navbar, list },
   data() {
     return {
       drawer: false,
@@ -177,12 +165,6 @@ export default {
   span {
     cursor: pointer;
   }
-}
-.footerProduction {
-  background: yellow;
-  margin-top: 200px;
-  width: 100%;
-  height: 200px;
 }
 .mgrid1 {
   margin: 0px 18px;
