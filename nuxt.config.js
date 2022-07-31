@@ -6,8 +6,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - rodreel',
-    title: 'rodreel',
+    titleTemplate: '',
+    title: 'Rod Production',
     htmlAttrs: {
       lang: 'en',
     },
@@ -39,6 +39,20 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // Hotmail mail
+    ['nuxt-mail', {
+      message: {
+        to: 'pongpop.suw@gmail.com',
+      },
+      smtp: {
+        host: 'smtp.live.com',
+        port: 587,
+        auth: {
+          user: 'blackraider86@hotmail.com',
+          pass: 'Csuwatikul5678'
+        },
+      },
+    }],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

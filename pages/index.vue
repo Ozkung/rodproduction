@@ -1,23 +1,28 @@
 <template>
   <div>
-    <navbar ref="nav" @trick="openNav" />
-    <v-carousel
-      cycle
-      height="650"
-      hide-delimiter-background
-      show-arrows-on-hover
-    >
-      <v-carousel-item v-for="(slide, i) in slides" :key="i">
-        <v-sheet :color="colors[i]" height="100%">
-          <v-row class="fill-height" align="center" justify="center">
-            <div class="text-h2">{{ slide }} Slide</div>
-          </v-row>
-        </v-sheet>
-      </v-carousel-item>
-    </v-carousel>
+    <!-- <navbar ref="nav" @trick="openNav" /> -->
+    <div style="margin-top: 53px">
+      <v-carousel
+        ref="slidePic"
+        height="100%"
+        cycle
+        hide-delimiter-background
+        show-arrows-on-hover
+      >
+        <v-carousel-item v-for="(slide, i) in slides" :key="i">
+          <v-sheet :color="colors[i]">
+            <v-row class="fill-height" align="center" justify="center">
+              <img :src="slide" width="100%" />
+            </v-row>
+          </v-sheet>
+        </v-carousel-item>
+      </v-carousel>
+    </div>
+
+    <!-- REELS -->
     <div class="title_point">REELS</div>
     <v-container>
-      <div class="d-flex justify-xl-center justify-lg-start overflow-x-auto">
+      <div class="d-flex justify-xl-center justify-lg-start overflow-class">
         <div v-for="(item, index) in reel" :key="index" class="mgrid1">
           <v-card max-width="400">
             <v-img :src="item.url" height="200px"></v-img>
@@ -25,12 +30,19 @@
         </div>
       </div>
     </v-container>
-    <div align="end" class="more_point">
-      <span>MORE...</span>
+
+    <div align="end" class="more_point" @click="goto('/image')">
+      <span>IMAGE MORE...</span>
     </div>
+
+    <div align="end" class="more_point" @click="goto('/video')">
+      <span>VDO MORE...</span>
+    </div>
+
+    <!-- SERVICES -->
     <div class="title_point">SERVICES</div>
     <v-container>
-      <div class="d-flex justify-xl-center justify-lg-start overflow-x-auto">
+      <div class="d-flex justify-xl-center justify-lg-start overflow-class">
         <v-card
           class="mgrid"
           max-width="300"
@@ -43,22 +55,28 @@
         </v-card>
       </div>
     </v-container>
-    <div align="end" class="more_point">
+    <div
+      style="padding-bottom: 400px"
+      align="end"
+      class="more_point"
+      @click="goto('/service')"
+    >
       <span>MORE...</span>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
       <list @link="closeNav" />
     </v-navigation-drawer>
-    <div class="footerProduction"></div>
+    <div class="footerProduction"><footbar /></div>
   </div>
 </template>
 
 <script>
 import navbar from '@/components/nav'
 import list from '@/components/listmenu'
+import footbar from '@/components/footerBar'
 export default {
   name: 'IndexPage',
-  components: { navbar, list },
+  components: { navbar, list, footbar },
   data() {
     return {
       drawer: false,
@@ -70,7 +88,7 @@ export default {
         'red lighten-1',
         'deep-purple accent-4',
       ],
-      slides: ['First', 'Second', 'Third'],
+      slides: ['Slide1.jpg', 'Slide2.jpg', 'Slide3.jpg'],
       slidesToken: [
         { name: 'First', url: 'First' },
         { name: 'Second', url: 'Second' },
@@ -92,29 +110,47 @@ export default {
       ],
       services: [
         {
-          name: 'services1',
-          title: 'Top western road trips',
-          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          name: 'Video online',
+          title: 'Video online',
+          url: 'https://cdn.pixabay.com/photo/2016/01/15/12/02/editing-1141505_960_720.jpg',
           description: '1,000 miles of wonder',
         },
         {
-          name: 'services2',
-          title: 'Top western road trips',
-          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          name: 'Corporate video',
+          title: 'Corporate video',
+          url: 'https://cdn.pixabay.com/photo/2020/04/29/19/29/flmaker-5110278_960_720.jpg',
           description: '1,000 miles of wonder',
         },
         {
-          name: 'services3',
-          title: 'Top western road trips',
-          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          name: 'Documentaries',
+          title: 'Documentaries',
+          url: 'https://cdn.pixabay.com/photo/2013/01/20/14/08/shooting-75599_960_720.jpg',
           description: '1,000 miles of wonder',
         },
         {
-          name: 'services4',
-          title: 'Top western road trips',
-          url: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+          name: 'Music video',
+          title: 'Music video',
+          url: 'https://cdn.pixabay.com/photo/2014/01/04/13/44/photographer-238502_960_720.jpg',
           description: '1,000 miles of wonder',
         },
+        // {
+        //   name: 'Info Graphic',
+        //   title: 'Info Graphic',
+        //   url: 'https://cdn.pixabay.com/photo/2020/08/27/21/05/design-5522955_960_720.jpg',
+        //   description: '1,000 miles of wonder',
+        // },
+        // {
+        //   name: '3D',
+        //   title: '3D',
+        //   url: 'https://cdn.pixabay.com/photo/2019/04/28/16/33/space-4163612_960_720.jpg',
+        //   description: '1,000 miles of wonder',
+        // },
+        // {
+        //   name: 'Wedding',
+        //   title: 'Wedding',
+        //   url: 'https://cdn.pixabay.com/photo/2018/01/16/11/57/bride-3085841_960_720.jpg',
+        //   description: '1,000 miles of wonder',
+        // },
       ],
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
     }
@@ -123,12 +159,13 @@ export default {
     group() {
       this.drawer = false
     },
-    drawer() {
-      if (this.drawer == false) {
-        this.$refs.nav.closeMenu(false)
-      }
-    },
+    // drawer() {
+    //   if (this.drawer == false) {
+    //     this.$refs.nav.closeMenu(false)
+    //   }
+    // },
   },
+
   methods: {
     openNav(item) {
       this.drawer = item
@@ -139,6 +176,10 @@ export default {
     },
     selectpage() {
       this.drawer = false
+    },
+    goto(item) {
+      this.$router.push({ path: item })
+      this.$emit('link', false)
     },
   },
 }
@@ -197,5 +238,13 @@ export default {
       right: 0px;
     }
   }
+}
+.overflow-class {
+  overflow-x: auto;
+  /*-ms-overflow-style: none; 
+  scrollbar-width: none; 
+  &::-webkit-scrollbar {
+    display: none;
+  }*/
 }
 </style>

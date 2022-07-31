@@ -1,20 +1,25 @@
 <template>
   <div>
-    <navbar ref="nav" @trick="openNav" />
-    <div style="margin-top: 53px">Image</div>
+    <!-- <navbar ref="nav" @trick="openNav" /> -->
+    <div style="margin-top: 53px">
+      <div class="headerContact">
+        Reels&nbsp;<span style="font-size: 28px">PICTURE</span>
+      </div>
+    </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
       <list @link="closeNav" />
     </v-navigation-drawer>
-    <div class="footerProduction"></div>
+    <div class="footerProduction"><footbar /></div>
   </div>
 </template>
 
 <script>
 import navbar from '@/components/nav'
 import list from '@/components/listmenu'
+import footbar from '@/components/footerBar'
 export default {
   name: 'IndexPage',
-  components: { navbar, list },
+  components: { navbar, list, footbar },
   data() {
     return {
       drawer: false,
@@ -25,11 +30,6 @@ export default {
   watch: {
     group() {
       this.drawer = false
-    },
-    drawer() {
-      if (this.drawer == false) {
-        this.$refs.nav.closeMenu(false)
-      }
     },
   },
   methods: {
@@ -101,5 +101,16 @@ export default {
       right: 0px;
     }
   }
+}
+.headerContact {
+  user-select: none;
+  padding: 0px 14%;
+  font-size: 450%;
+  font-weight: 600;
+  padding: {
+    top: 50px;
+    bottom: 150px;
+  }
+  background-color: #878787;
 }
 </style>

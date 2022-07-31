@@ -1,35 +1,39 @@
 <template>
   <div>
-    <navbar ref="nav" @trick="openNav" />
-    <div style="margin-top: 53px">Contact</div>
+    <!-- <navbar ref="nav" @trick="openNav" /> -->
+    <div style="margin-top: 53px">
+      <div class="headerContact">Contact</div>
+      <div class="mt-4 detailContact">
+        <div>Tel. : {{ tel }}</div>
+        <div>E-mail : {{ emailTag }}</div>
+      </div>
+    </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
       <list @link="closeNav" />
     </v-navigation-drawer>
-    <div class="footerProduction"></div>
+    <div class="footerProduction"><footbar /></div>
   </div>
 </template>
 
 <script>
 import navbar from '@/components/nav'
 import list from '@/components/listmenu'
+import footbar from '@/components/footerBar'
 export default {
   name: 'IndexPage',
-  components: { navbar, list },
+  components: { navbar, list, footbar },
   data() {
     return {
       drawer: false,
       group: null,
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
+      emailTag: 'rod.mpjt@gmail.com',
+      tel: '087-102-9600',
     }
   },
   watch: {
     group() {
       this.drawer = false
-    },
-    drawer() {
-      if (this.drawer == false) {
-        this.$refs.nav.closeMenu(false)
-      }
     },
   },
   methods: {
@@ -100,6 +104,40 @@ export default {
       left: 27px;
       right: 0px;
     }
+  }
+}
+.headerContact {
+  user-select: none;
+  padding: 0px 14%;
+  font-size: 450%;
+  font-weight: 600;
+  padding: {
+    top: 50px;
+    bottom: 150px;
+  }
+  background-color: #878787;
+}
+
+.detailContact {
+  user-select: none;
+  padding: 0px 14%;
+  font-size: 18px;
+}
+@media only screen and (max-width: 900px) {
+  .detailContact {
+    margin-bottom: 60%;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .detailContact {
+    margin-bottom: 80%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .detailContact {
+    margin-bottom: 200%;
   }
 }
 </style>

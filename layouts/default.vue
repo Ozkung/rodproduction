@@ -1,12 +1,24 @@
 <template>
   <v-app light>
-    <Nuxt />
+    <navbar @trick="openNav" />
+    <Nuxt ref="Mpages" />
   </v-app>
 </template>
 
 <script>
+import navbar from '~/components/nav'
 export default {
-  name: 'DefaultLayout',
+  components: { navbar },
+  data() {
+    return {
+      page: null,
+    }
+  },
+  methods: {
+    openNav(item) {
+      this.$refs.Mpages.$children[0].openNav(item)
+    },
+  },
 }
 </script>
 <style>
@@ -15,9 +27,19 @@ export default {
   font-family: 'Anton', sans-serif;
 }
 .footerProduction {
-  background: yellow;
-  margin-top: 200px;
+  position: absolute;
+  bottom: 0px;
+  background: #9b8d29b0;
   width: 100%;
-  height: 200px;
+  min-height: 190px;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
 }
 </style>

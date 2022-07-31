@@ -1,7 +1,12 @@
 <template>
   <div class="nav_main">
-    <div class="logoTitle cursorP" @click="rootLink('/')">
-      <img src="logo.svg" width="26px" />
+    <div class="logoTitle">
+      <img
+        class="cursorP"
+        src="logoBWheader.svg"
+        width="26px"
+        @click="rootLink('/')"
+      />
     </div>
     <div class="uncheck">
       <div class="pr-5 cursorP" @click="rootLink('/')">HOME</div>
@@ -37,8 +42,8 @@ export default {
       group: null,
       windowWidth: window.innerWidth,
       items: [
-        { title: 'Video', path: '/video' },
-        { title: 'Image', path: '/image' },
+        { title: 'VDO', path: '/video' },
+        { title: 'PICTURE', path: '/image' },
       ],
     }
   },
