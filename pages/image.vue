@@ -4,7 +4,7 @@
     <div style="margin-top: 53px">
       <div class="headerContact"></div>
       <div style="position: relative">
-        <img src="Reel.jpg" />
+        <img width="100%" src="Reel.jpg" />
         <div class="headerContact">
           Reels&nbsp;<span style="font-size: 28px">PICTURE</span>
         </div>
@@ -136,7 +136,7 @@ export default {
   top: 0px;
   user-select: none;
   padding: 8% 14%;
-  font-size: 650%;
+  font-size: 8vw;
   font-weight: 600;
 }
 </style>

@@ -3,7 +3,7 @@
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
       <div style="position: relative">
-        <img src="Service.jpg" />
+        <img width="100%" src="Service.jpg" />
         <div class="headerContact">Services</div>
       </div>
     </div>
@@ -142,7 +142,7 @@ export default {
   top: 0px;
   user-select: none;
   padding: 8% 14%;
-  font-size: 650%;
+  font-size: 8vw;
   font-weight: 600;
 }
 .overflow-class {

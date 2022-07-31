@@ -3,7 +3,7 @@
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
       <div style="position: relative">
-        <img src="contact.jpg" />
+        <img width="100%" src="contact.jpg" />
         <div class="headerContact">Contact</div>
       </div>
       <div class="my-4 detailContact">
@@ -177,7 +177,7 @@ export default {
   top: 0px;
   user-select: none;
   padding: 8% 14%;
-  font-size: 650%;
+  font-size: 8vw;
   font-weight: 600;
 }
 
