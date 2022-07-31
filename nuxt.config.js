@@ -24,8 +24,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
-
+  plugins: [{ src: '~/plugins/masonry.js', ssr: false }],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -42,14 +41,14 @@ export default {
     // Hotmail mail
     ['nuxt-mail', {
       message: {
-        to: 'pongpop.suw@gmail.com',
+        to: 'rod.mpjt@gmail.com', cc: 'Csuwatikul@gmail.com' 
       },
       smtp: {
         host: 'smtp.live.com',
         port: 587,
         auth: {
           user: 'blackraider86@hotmail.com',
-          pass: 'Csuwatikul5678'
+          pass: 'Csuwatikul7890'
         },
       },
     }],

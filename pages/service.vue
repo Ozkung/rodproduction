@@ -2,7 +2,10 @@
   <div>
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
-      <div class="headerContact">Services</div>
+      <div style="position: relative">
+        <img src="Service.jpg" />
+        <div class="headerContact">Services</div>
+      </div>
     </div>
     <div style="padding: 0px 14%">
       <v-container>
@@ -135,48 +138,19 @@ export default {
   margin-bottom: 25px;
 }
 .headerContact {
+  position: absolute;
+  top: 0px;
   user-select: none;
-  padding: 0px 14%;
-  font-size: 450%;
+  padding: 8% 14%;
+  font-size: 650%;
   font-weight: 600;
-  padding: {
-    top: 50px;
-    bottom: 150px;
-  }
-  background-color: #878787;
 }
 .overflow-class {
   overflow-x: auto;
-  /*-ms-overflow-style: none; 
-  scrollbar-width: none; 
+  /*-ms-overflow-style: none;
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }*/
-}
-
-.paddingFoot {
-  padding-bottom: 15%;
-}
-@media only screen and (max-width: 1280px) {
-  .paddingFoot {
-    margin-bottom: 18%;
-  }
-}
-@media only screen and (max-width: 960px) {
-  .paddingFoot {
-    margin-bottom: 20%;
-  }
-}
-
-@media only screen and (max-width: 780px) {
-  .paddingFoot {
-    margin-bottom: 80%;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .paddingFoot {
-    margin-bottom: 140%;
-  }
 }
 </style>

@@ -2,15 +2,53 @@
   <div>
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
-      <div class="headerContact">Contact</div>
-      <div class="mt-4 detailContact">
+      <div style="position: relative">
+        <img src="Contact.jpg" />
+        <div class="headerContact">Contact</div>
+      </div>
+      <div class="my-4 detailContact">
         <div>Tel. : {{ tel }}</div>
         <div>E-mail : {{ emailTag }}</div>
+        <div class="mt-4">
+          <label for="email">Your email address:</label>
+          <div>
+            <v-text-field
+              label="Your E-mail"
+              :rules="emailrules"
+              v-model="cusEmail"
+              solo
+            ></v-text-field>
+          </div>
+          <label for="message">Message:</label>
+          <div>
+            <v-textarea
+              solo
+              :rules="msgrules"
+              name="input-7-4"
+              rows="3"
+              row-height="30"
+              v-model="cusMeassage"
+              label="Your Message"
+            ></v-textarea>
+          </div>
+          <div class="d-flex align-start">
+            <v-btn outlined color="indigo" @click="sendMail()">
+              Send E-mail
+            </v-btn>
+            <div style="width: 250px" class="pl-4">
+              <v-alert v-model="vaildation" type="error" dismissible>
+                Incorrect Pattern.
+              </v-alert>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
       <list @link="closeNav" />
     </v-navigation-drawer>
+
     <div class="footerProduction"><footbar /></div>
   </div>
 </template>
@@ -29,6 +67,20 @@ export default {
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
       emailTag: 'rod.mpjt@gmail.com',
       tel: '087-102-9600',
+      cusEmail: '',
+      cusMeassage: '',
+      checkEmail: false,
+      vaildation: false,
+      emailrules: [
+        (value) => !!value || 'Required.',
+        (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          this.openCheckEmail(pattern.test(value))
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      ],
+      msgrules: [(value) => !!value || 'Required.'],
     }
   },
   watch: {
@@ -46,6 +98,20 @@ export default {
     },
     selectpage() {
       this.drawer = false
+    },
+    sendMail() {
+      if (this.checkEmail == true && this.cusMeassage != '') {
+        this.$mail.send({
+          from: this.cusEmail,
+          subject: 'Contact form Webpage',
+          text: this.cusMeassage,
+        })
+      } else {
+        this.vaildation = true
+      }
+    },
+    openCheckEmail(item) {
+      this.checkEmail = item
     },
   },
 }
@@ -107,36 +173,16 @@ export default {
   }
 }
 .headerContact {
+  position: absolute;
+  top: 0px;
   user-select: none;
-  padding: 0px 14%;
-  font-size: 450%;
+  padding: 8% 14%;
+  font-size: 650%;
   font-weight: 600;
-  padding: {
-    top: 50px;
-    bottom: 150px;
-  }
-  background-color: #878787;
 }
 
 .detailContact {
   padding: 0px 14%;
   font-size: 18px;
-}
-@media only screen and (max-width: 900px) {
-  .detailContact {
-    margin-bottom: 60%;
-  }
-}
-
-@media only screen and (max-width: 780px) {
-  .detailContact {
-    margin-bottom: 80%;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .detailContact {
-    margin-bottom: 200%;
-  }
 }
 </style>

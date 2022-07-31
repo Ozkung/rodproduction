@@ -2,9 +2,24 @@
   <div>
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
-      <div class="headerContact">
-        Reels&nbsp;<span style="font-size: 28px">VDO</span>
+      <div style="position: relative">
+        <img src="Reel.jpg" />
+        <div class="headerContact">
+          Reels&nbsp;<span style="font-size: 28px">VDO</span>
+        </div>
       </div>
+    </div>
+    <div class="padCenter my-4">
+      <masonry
+        :cols="{ default: 4, 1000: 3, 700: 2, 400: 1 }"
+        :gutter="{ default: '30px', 700: '15px' }"
+      >
+        <div v-for="(item, index) in imgData" :key="index">
+          <div>
+            <img :src="item.img" />
+          </div>
+        </div>
+      </masonry>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
       <list @link="closeNav" />
@@ -25,6 +40,16 @@ export default {
       drawer: false,
       group: null,
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
+      imgData: [
+        { msg: '1', img: 'https://via.placeholder.com/340' },
+        { msg: '2', img: 'https://via.placeholder.com/340' },
+        { msg: '3', img: 'https://via.placeholder.com/340' },
+        { msg: '4', img: 'https://via.placeholder.com/340' },
+        { msg: '5', img: 'https://via.placeholder.com/340' },
+        { msg: '6', img: 'https://via.placeholder.com/340' },
+        { msg: '7', img: 'https://via.placeholder.com/340' },
+        { msg: '8', img: 'https://via.placeholder.com/340' },
+      ],
     }
   },
   watch: {
@@ -59,6 +84,9 @@ export default {
   padding: 0px 14%;
   font-size: 450%;
   font-weight: 600;
+}
+.padCenter {
+  padding: 0px 14%;
 }
 .more_point {
   user-select: none;
@@ -103,14 +131,11 @@ export default {
   }
 }
 .headerContact {
+  position: absolute;
+  top: 0px;
   user-select: none;
-  padding: 0px 14%;
-  font-size: 450%;
+  padding: 8% 14%;
+  font-size: 650%;
   font-weight: 600;
-  padding: {
-    top: 50px;
-    bottom: 150px;
-  }
-  background-color: #878787;
 }
 </style>

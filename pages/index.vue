@@ -31,12 +31,12 @@
       </div>
     </v-container>
 
-    <div align="end" class="more_point" @click="goto('/image')">
+    <!-- <div align="end" class="more_point" @click="goto('/image')">
       <span>IMAGE MORE...</span>
-    </div>
+    </div> -->
 
     <div align="end" class="more_point" @click="goto('/video')">
-      <span>VDO MORE...</span>
+      <span>MORE...</span>
     </div>
 
     <!-- SERVICES -->
@@ -56,7 +56,7 @@
       </div>
     </v-container>
     <div
-      style="padding-bottom: 400px"
+      style="padding-bottom: 200px"
       align="end"
       class="more_point"
       @click="goto('/service')"

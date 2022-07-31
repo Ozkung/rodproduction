@@ -27,8 +27,6 @@ export default {
   font-family: 'Anton', sans-serif;
 }
 .footerProduction {
-  position: absolute;
-  bottom: 0px;
   background: #9b8d29b0;
   width: 100%;
   min-height: 190px;
