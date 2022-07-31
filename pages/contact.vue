@@ -119,7 +119,6 @@ export default {
 }
 
 .detailContact {
-  user-select: none;
   padding: 0px 14%;
   font-size: 18px;
 }
