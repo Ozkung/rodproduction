@@ -16,7 +16,7 @@
           </v-sheet>
         </v-carousel-item>
       </v-carousel> -->
-      <v-carousel height="100%" hide-delimiters>
+      <v-carousel height="100%" hide-delimiters show-arrows-on-hover>
         <v-carousel-item
           v-for="(item, i) in slides"
           :key="i"
