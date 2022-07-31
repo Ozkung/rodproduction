@@ -2,11 +2,10 @@
   <div>
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
-      <v-carousel
+      <!-- <v-carousel
         ref="slidePic"
         height="100%"
-        cycle
-        hide-delimiter-background
+        hide-delimiter
         show-arrows-on-hover
       >
         <v-carousel-item v-for="(slide, i) in slides" :key="i">
@@ -16,6 +15,13 @@
             </v-row>
           </v-sheet>
         </v-carousel-item>
+      </v-carousel> -->
+      <v-carousel height="100%" hide-delimiters>
+        <v-carousel-item
+          v-for="(item, i) in slides"
+          :key="i"
+          :src="item"
+        ></v-carousel-item>
       </v-carousel>
     </div>
 
