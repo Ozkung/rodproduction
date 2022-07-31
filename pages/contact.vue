@@ -3,7 +3,7 @@
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
       <div style="position: relative">
-        <img src="Contact.jpg" />
+        <img src="contact.jpg" />
         <div class="headerContact">Contact</div>
       </div>
       <div class="my-4 detailContact">
