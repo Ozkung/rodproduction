@@ -1,78 +1,21 @@
 <template>
   <div>
-    <!-- <navbar ref="nav" @trick="openNav" /> -->
-    <div style="margin-top: 53px">
-      <!-- <v-carousel
-        ref="slidePic"
-        height="100%"
-        hide-delimiter
-        show-arrows-on-hover
-      >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i">
-          <v-sheet :color="colors[i]">
-            <v-row class="fill-height" align="center" justify="center">
-              <img :src="slide" width="100%" />
-            </v-row>
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel> -->
-      <v-carousel height="100%" hide-delimiters show-arrows-on-hover>
-        <v-carousel-item
-          v-for="(item, i) in slides"
-          :key="i"
-          :src="item"
-        ></v-carousel-item>
-      </v-carousel>
-    </div>
-
-    <!-- REELS -->
-    <div class="title_point">REELS</div>
-    <v-container>
-      <div class="d-flex justify-xl-center justify-lg-start overflow-class">
-        <div v-for="(item, index) in reel" :key="index" class="mgrid1">
-          <v-card max-width="400">
-            <v-img :src="item.url" height="200px"></v-img>
-          </v-card>
+    <div class="app_main">
+      <div class="vdo_text_content">
+        <div class="topic">Media Company base in bangkok</div>
+        <div class="content">We Provide a full prodution services for</div>
+        <div class="content">
+          comemrcials, short flims, video online, documentaries, music, videos
+          and branded content.
+        </div>
+        <div class="btn">
+          <v-btn class="btn_contact" depressed color="error">CONTACT</v-btn>
         </div>
       </div>
-    </v-container>
-
-    <!-- <div align="end" class="more_point" @click="goto('/image')">
-      <span>IMAGE MORE...</span>
-    </div> -->
-
-    <div align="end" class="more_point" @click="goto('/video')">
-      <span>MORE...</span>
+      <video width="100%" muted autoplay loop>
+        <source src="RodReel2021.mp4" type="video/mp4" />
+      </video>
     </div>
-
-    <!-- SERVICES -->
-    <div class="title_point">SERVICES</div>
-    <v-container>
-      <div class="d-flex justify-xl-center justify-lg-start overflow-class">
-        <v-card
-          class="mgrid"
-          max-width="300"
-          v-for="(item, index) in services"
-          :key="index"
-        >
-          <v-img :src="item.url" height="200px"></v-img>
-          <v-card-title> {{ item.title }} </v-card-title>
-          <v-card-subtitle> {{ item.description }} </v-card-subtitle>
-        </v-card>
-      </div>
-    </v-container>
-    <div
-      style="padding-bottom: 200px"
-      align="end"
-      class="more_point"
-      @click="goto('/service')"
-    >
-      <span>MORE...</span>
-    </div>
-    <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @link="closeNav" />
-    </v-navigation-drawer>
-    <div class="footerProduction"><footbar /></div>
   </div>
 </template>
 
@@ -191,12 +134,56 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 .v-application {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Teko', sans-serif !important;
+}
+.v-application--wrap {
+  background: black;
 }
 </style>
 <style lang="scss" scoped>
+.app {
+  &_main {
+    position: relative;
+  }
+}
+.vdo_text_content {
+  position: absolute;
+  z-index: 10;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10.7rem;
+  width: 52vw;
+  .topic {
+    font-weight: 600;
+    font-size: 3.4rem;
+    word-break: break-all;
+  }
+  .content {
+    font-size: 1.4rem;
+    line-height: 1.25;
+    padding-top: 4px;
+    word-break: break-all;
+    &:nth-child(3) {
+      padding: {
+        top: 0px;
+        bottom: 24px;
+      }
+    }
+  }
+  .btn {
+    .btn_contact {
+      width: 27%;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+  }
+}
 .title_point {
   user-select: none;
   padding: 0px 14%;

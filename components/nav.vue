@@ -1,12 +1,13 @@
 <template>
-  <div class="nav_main">
-    <div class="logoTitle">
+  <div class="nav_main my-4">
+    <div class="logoTitle pl-5">
       <img
-        class="cursorP"
-        src="logoBWheader.svg"
+        class="cursorP mr-5"
+        src="logo.svg"
         width="26px"
         @click="rootLink('/')"
       />
+      <img class="cursorP" src="rod.svg" @click="rootLink('/')" />
     </div>
     <div class="uncheck">
       <div class="pr-5 cursorP" @click="rootLink('/')">HOME</div>
@@ -83,9 +84,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  box-shadow: 0px 0px 5px black;
-  padding-right: 100px;
+  background: transparent;
   position: fixed;
   z-index: 3;
   width: 100%;
@@ -93,18 +92,18 @@ export default {
 .cursorP {
   user-select: none;
   cursor: pointer;
+  color: #fff;
 }
 .logoTitle {
   width: 270px;
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: 50px;
 }
 .uncheck {
   display: flex;
 }
-@media only screen and (max-width: 780px) {
+/*@media only screen and (max-width: 780px) {
   .nav_main {
     padding-right: 0px;
   }
@@ -114,5 +113,5 @@ export default {
   .uncheck {
     display: none;
   }
-}
+}*/
 </style>
