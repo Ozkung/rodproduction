@@ -42,7 +42,6 @@ export default {
   },
   watch: {
     namePage() {
-      console.log('this.namePage :', this.namePage)
       if (this.namePage !== 'index') this.bgcolor = 'background: #000'
       else this.bgcolor = 'background: transparent'
     },
