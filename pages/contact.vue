@@ -1,53 +1,9 @@
 <template>
-  <div>
+  <div class="value_fate">
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div style="margin-top: 53px">
-      <div style="position: relative">
-        <img width="100%" src="contact.jpg" />
-        <div class="headerContact">Contact</div>
-      </div>
-      <div class="my-4 detailContact">
-        <div>Tel. : {{ tel }}</div>
-        <div>E-mail : {{ emailTag }}</div>
-        <div class="mt-4">
-          <label for="email">Your email address:</label>
-          <div>
-            <v-text-field
-              label="Your E-mail"
-              :rules="emailrules"
-              v-model="cusEmail"
-              solo
-            ></v-text-field>
-          </div>
-          <label for="message">Message:</label>
-          <div>
-            <v-textarea
-              solo
-              :rules="msgrules"
-              name="input-7-4"
-              rows="3"
-              row-height="30"
-              v-model="cusMeassage"
-              label="Your Message"
-            ></v-textarea>
-          </div>
-          <div class="d-flex align-start">
-            <v-btn outlined color="indigo" @click="sendMail()">
-              Send E-mail
-            </v-btn>
-            <div style="width: 250px" class="pl-4">
-              <v-alert v-model="vaildation" type="error" dismissible>
-                Incorrect Pattern.
-              </v-alert>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="red_bg"></div>
     </div>
-
-    <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @link="closeNav" />
-    </v-navigation-drawer>
 
     <div class="footerProduction"><footbar /></div>
   </div>
@@ -62,7 +18,6 @@ export default {
   components: { navbar, list, footbar },
   data() {
     return {
-      drawer: false,
       group: null,
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
       emailTag: 'rod.mpjt@gmail.com',
@@ -83,22 +38,7 @@ export default {
       msgrules: [(value) => !!value || 'Required.'],
     }
   },
-  watch: {
-    group() {
-      this.drawer = false
-    },
-  },
   methods: {
-    openNav(item) {
-      this.drawer = item
-    },
-    closeNav() {
-      this.drawer = false
-      // this.$refs.nav.closeMenu(false)
-    },
-    selectpage() {
-      this.drawer = false
-    },
     sendMail() {
       if (this.checkEmail == true && this.cusMeassage != '') {
         this.$mail.send({
@@ -116,14 +56,10 @@ export default {
   },
 }
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-.v-application {
-  font-family: 'Anton', sans-serif;
-}
-</style>
 <style lang="scss" scoped>
+.red_bg {
+  background: red;
+}
 .title_point {
   user-select: none;
   padding: 0px 14%;
@@ -180,7 +116,12 @@ export default {
   font-size: 8vw;
   font-weight: 600;
 }
-
+.value_fate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 .detailContact {
   padding: 0px 14%;
   font-size: 18px;
