@@ -36,31 +36,8 @@
       <div class="d-flex justify-center align-center">
         <div style="color: #fff; font-size: 3.4rem">Service</div>
       </div>
-      <!-- pic1 -->
-      <div class="service_style">
-        <div class="imgGroup">
-          <div style="color: #fff">
-            <img src="Untitled-1-07.jpg" width="85%" />
-          </div>
-          <div style="color: #fff">
-            <img src="Untitled-1-08.jpg" width="85%" />
-          </div>
-          <div style="color: #fff">
-            <img src="Untitled-1-09.jpg" width="85%" />
-          </div>
-        </div>
-        <!-- pic2 -->
-        <div class="imgGroup mt-5">
-          <div style="color: #fff">
-            <img src="Untitled-1-10.jpg" width="85%" />
-          </div>
-          <div style="color: #fff">
-            <img src="Untitled-1-11.jpg" width="85%" />
-          </div>
-          <div style="color: #fff">
-            <img src="Untitled-1-12.jpg" width="85%" />
-          </div>
-        </div>
+      <div class="grid_services">
+        <img v-for="itemed in slides" :key="itemed" :src="itemed" width="28%" />
       </div>
     </div>
     <div>
@@ -101,7 +78,14 @@ export default {
         'red lighten-1',
         'deep-purple accent-4',
       ],
-      slides: ['Slide1.jpg', 'Slide2.jpg', 'Slide3.jpg'],
+      slides: [
+        'Untitled-1-07.jpg',
+        'Untitled-1-08.jpg',
+        'Untitled-1-09.jpg',
+        'Untitled-1-10.jpg',
+        'Untitled-1-11.jpg',
+        'Untitled-1-12.jpg',
+      ],
       slidesToken: [
         { name: 'First', url: 'First' },
         { name: 'Second', url: 'Second' },
@@ -261,7 +245,6 @@ export default {
     }
   }
 }
-
 .service_style {
   max-width: 720px;
   margin: 0px auto;
@@ -332,10 +315,37 @@ export default {
 }
 .overflow-class {
   overflow-x: auto;
-  /*-ms-overflow-style: none; 
-  scrollbar-width: none; 
+  /*-ms-overflow-style: none;
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }*/
+}
+.grid_services {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  img {
+    padding: 8px;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .grid_services {
+    max-width: unset;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow: hidden;
+    overflow-x: scroll;
+    img {
+      padding: 8px;
+      cursor: pointer;
+    }
+  }
 }
 </style>

@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div
+    class="value_fate"
+    style="
+      background: url('bg_forest.jpg') center right 80% no-repeat;
+      height: 100%;
+    "
+  >
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div>
       <div style="position: relative">
@@ -51,7 +57,7 @@
       <list @link="closeNav" />
     </v-navigation-drawer>
 
-    <div><footbar /></div>
+    <div style="background: #000"><footbar /></div>
   </div>
 </template>
 
@@ -188,5 +194,14 @@ export default {
   color: #fff;
   padding: 0px 14%;
   font-size: 18px;
+}
+
+.value_fate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.fit_bottom {
+  width: 100%;
 }
 </style>

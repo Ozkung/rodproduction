@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <div v-for="(item, index) in conetent_service" :key="index">
-      <div>{{ item.title }}</div>
-      <div>{{ item.detail }}</div>
+  <div class="value_fate">
+    <div>
+      <div
+        :style="`background: ${item.bg}`"
+        v-for="(item, index) in conetent_service"
+        :key="index"
+      >
+        <div>{{ item.title }}</div>
+        <div>{{ item.detail }}</div>
+      </div>
     </div>
     <div><footbar /></div>
   </div>
@@ -66,31 +72,37 @@ export default {
       ],
       conetent_service: [
         {
+          bg: '#60606',
           title: 'Online Content / Viral Marketing',
           detail:
             'ในโลกยุคปัจจุบัน การตลาดออนไลน์เป็นหนึ่งในช่องทางสำคัญในการเข้าถึงกลุ่มลูกค้า เพื่อสร้างยอดขาย เพิ่มความรับรู้ในตัวแบรนด์ และสินค้า ได้ตลอด 24 ชั่วโมงอย่างไม่มีวันหยุด',
         },
         {
+          bg: '#3a3a3a',
           title: 'Presentation / Brand Corporate',
           detail:
             'หนึ่งในช่องทางสำคัญในการนำเสนอวิสัยทัศน์  สร้างความน่าเชื่อถือ และบริการให้กับบริษัทคู่ค้า หรือกลุ่มลูกค้าให้มีความมั่นใจใน แบรนด์ และผลิตภัณฑ์ มากยิ่งขึ้น',
         },
         {
+          bg: '#60606',
           title: 'Documentaries',
           detail:
             'ถ่ายทอดเรื่องราวแง่มุมต่าง ๆ ในสังคม เพื่อส่งเสริมภาพลักษณ์และการรับรู้ โครงการ CSR ทั้งของภาครัฐและเอกชน',
         },
         {
+          bg: '#3a3a3a',
           title: 'Infographic / 3D',
           detail:
             'จุดประกายสร้างยอดขายให้ปังด้วย	 Infographic และ 3D จากทีมงานมืออาชีพ',
         },
         {
+          bg: '#60606',
           title: 'Event Summary',
           detail:
             'บันทึกเรื่องราววันสำคัญ ช่วงเวลาพิเศษ งานแต่งงาน งานประชุม/สัมมนา งานแถลงข่าว งานแสดงสินค้า ทั้งในรูปแบบ Video และภาพนิ่ง',
         },
         {
+          bg: '#3a3a3a',
           title: 'Still Photography',
           detail:
             'สร้างสรรค์และถ่ายภาพนิ่งสินค้า แพ็คช๊อท เมนูอาหาร ภาพถ่ายบุคคล งานแต่งงาน งานอสังหาฯ บริษัท โรงงาน รวมไปถึงการออกแบบเพื่อทำสื่อโฆษณาต่าง ๆ',
@@ -160,5 +172,13 @@ export default {
   &::-webkit-scrollbar {
     display: none;
   }*/
+}
+.value_fate {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+  margin-top: 63px;
+  height: 100%;
 }
 </style>

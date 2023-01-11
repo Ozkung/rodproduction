@@ -34,6 +34,10 @@ export default {
     '@nuxtjs/vuetify',
   ],
 
+  env:{
+    TEST: 'TEST'
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
