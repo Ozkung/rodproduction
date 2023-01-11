@@ -22,14 +22,13 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-.v-application {
-  font-family: 'Anton', sans-serif;
-}
 .footerProduction {
-  background: #9b8d29b0;
+  background: #000;
   width: 100%;
   min-height: 190px;
+}
+.v-application--wrap {
+  background: black;
 }
 
 .page-enter-active,

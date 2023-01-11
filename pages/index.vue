@@ -2,10 +2,10 @@
   <div>
     <div class="app_main">
       <div class="vdo_text_content">
-        <div class="topic">Media Company base in bangkok</div>
-        <div class="content">We Provide a full prodution services for</div>
+        <div class="topic">Media company base in bangkok</div>
+        <div class="content">We provide a full production services for</div>
         <div class="content">
-          comemrcials, short flims, video online, documentaries, music, videos
+          commercials, short films, video online, documentaries, music videos
           and branded content.
         </div>
         <div class="btn">
@@ -13,8 +13,72 @@
         </div>
       </div>
       <video width="100%" muted autoplay loop>
-        <source src="RodReel2021.mp4" type="video/mp4" />
+        <source src="2021_Reel-1.mp4" type="video/mp4" />
       </video>
+    </div>
+    <!-- word -->
+    <div class="my_advice my-5">
+      <div style="font-weight: 600; font-size: 3.4rem">R.O.D Production</div>
+      <br />
+      <div class="content">
+        Our in-house creative team will assist you in consulting and generating
+        new ideas with the clients to ensure it reach objective with limited
+        budget.
+      </div>
+    </div>
+    <!-- sercvice -->
+    <div
+      style="
+        background: url('RodReel2021.mp4_snapshot_01.17.582.jpg');
+        padding-bottom: 20px;
+      "
+    >
+      <div class="d-flex justify-center align-center">
+        <div style="color: #fff; font-size: 3.4rem">Service</div>
+      </div>
+      <!-- pic1 -->
+      <div class="service_style">
+        <div class="imgGroup">
+          <div style="color: #fff">
+            <img src="Untitled-1-07.jpg" width="85%" />
+          </div>
+          <div style="color: #fff">
+            <img src="Untitled-1-08.jpg" width="85%" />
+          </div>
+          <div style="color: #fff">
+            <img src="Untitled-1-09.jpg" width="85%" />
+          </div>
+        </div>
+        <!-- pic2 -->
+        <div class="imgGroup mt-5">
+          <div style="color: #fff">
+            <img src="Untitled-1-10.jpg" width="85%" />
+          </div>
+          <div style="color: #fff">
+            <img src="Untitled-1-11.jpg" width="85%" />
+          </div>
+          <div style="color: #fff">
+            <img src="Untitled-1-12.jpg" width="85%" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <v-row no-gutters>
+        <v-col v-for="n in 4" :key="n">
+          <v-card class="pa-2 ma-1" tile outlined> col </v-card>
+        </v-col>
+      </v-row>
+    </div>
+    <div>
+      <v-row no-gutters>
+        <v-col v-for="n in 4" :key="n">
+          <v-card class="pa-2 ma-1" tile outlined> col </v-card>
+        </v-col>
+      </v-row>
+    </div>
+    <div>
+      <footbar />
     </div>
   </div>
 </template>
@@ -114,7 +178,6 @@ export default {
     //   }
     // },
   },
-
   methods: {
     openNav(item) {
       this.drawer = item
@@ -146,6 +209,20 @@ export default {
 .app {
   &_main {
     position: relative;
+  }
+}
+.my_advice {
+  color: #fff;
+  margin: {
+    left: 6rem;
+    right: 6rem;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 3.4rem !important;
+  }
+  .content {
+    font-size: 1.4rem;
   }
 }
 .vdo_text_content {
@@ -181,6 +258,27 @@ export default {
       width: 27%;
       height: 40px;
       font-size: 1.5rem;
+    }
+  }
+}
+
+.service_style {
+  max-width: 720px;
+  margin: 0px auto;
+}
+.imgGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:nth-child(1) {
+      justify-content: end;
+    }
+    &:nth-child(3) {
+      justify-content: start;
     }
   }
 }

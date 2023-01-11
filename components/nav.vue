@@ -1,5 +1,5 @@
 <template>
-  <div class="nav_main my-4">
+  <div class="nav_main" :style="bgcolor">
     <div class="logoTitle pl-5">
       <img
         class="cursorP mr-5"
@@ -11,23 +11,9 @@
     </div>
     <div class="uncheck">
       <div class="pr-5 cursorP" @click="rootLink('/')">HOME</div>
-      <div class="pr-5 cursorP">
-        <v-menu ref="menu" open-on-click bottom offset-y auto>
-          <template v-slot:activator="{ on, attrs }">
-            <div dark v-bind="attrs" v-on="on">SHOWREEL</div>
-          </template>
-
-          <div class="d-flex" style="background: #fff">
-            <div class="cursorP" v-for="(item, index) in items" :key="index">
-              <div class="ma-2" @click="rootLink(item.path)">
-                {{ item.title }}
-              </div>
-            </div>
-          </div>
-        </v-menu>
-      </div>
-      <div class="pr-5 cursorP" @click="rootLink('/service')">SERVICES</div>
-      <div class="pr-5 cursorP" @click="rootLink('/contact')">CONTACT</div>
+      <div class="pr-5 cursorP" @click="rootLink('/about/')">ABOUT</div>
+      <div class="pr-5 cursorP" @click="rootLink('/service/')">SERVICES</div>
+      <div class="pr-5 cursorP" @click="rootLink('/contact/')">CONTACT</div>
     </div>
     <div v-if="windowWidth < 780" class="mx-3">
       <v-app-bar-nav-icon @click.stop="trickMenu()"></v-app-bar-nav-icon>
@@ -39,6 +25,7 @@
 export default {
   data() {
     return {
+      bgcolor: 'background: transparent',
       drawer: false,
       group: null,
       windowWidth: window.innerWidth,
@@ -54,14 +41,22 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener('scroll', this.onScroll)
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
     })
   },
   beforeDestroy() {
+    window.removeEventListener('scroll', this.onScroll)
     window.removeEventListener('resize', this.onResize)
   },
   methods: {
+    onScroll(e) {
+      this.windowTop =
+        window.top.scrollY /* or: e.target.documentElement.scrollTop */
+      if (this.windowTop >= 690) this.bgcolor = 'background: #000'
+      else this.bgcolor = 'background: transparent'
+    },
     onResize() {
       this.windowWidth = window.innerWidth
     },
@@ -80,14 +75,14 @@ export default {
 </script>
 <style scoped>
 .nav_main {
-  height: 53px;
+  height: 63px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: transparent;
   position: fixed;
-  z-index: 3;
+  z-index: 15;
   width: 100%;
+  transition: background 0.5s ease;
 }
 .cursorP {
   user-select: none;

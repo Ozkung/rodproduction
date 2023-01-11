@@ -1,34 +1,10 @@
 <template>
   <div>
-    <!-- <navbar ref="nav" @trick="openNav" /> -->
-    <div style="margin-top: 53px">
-      <div style="position: relative">
-        <img width="100%" src="Service.jpg" />
-        <div class="headerContact">Services</div>
-      </div>
+    <div v-for="(item, index) in conetent_service" :key="index">
+      <div>{{ item.title }}</div>
+      <div>{{ item.detail }}</div>
     </div>
-    <div style="padding: 0px 14%">
-      <v-container>
-        <div
-          class="d-flex justify-xl-start justify-lg-start justify-sm-start flex-wrap paddingFoot"
-        >
-          <v-card
-            class="mgrid"
-            max-width="280"
-            v-for="(item, index) in services"
-            :key="index"
-          >
-            <v-img :src="item.url" height="200px"></v-img>
-            <v-card-title> {{ item.title }} </v-card-title>
-            <v-card-subtitle> {{ item.description }} </v-card-subtitle>
-          </v-card>
-        </div>
-      </v-container>
-    </div>
-    <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @link="closeNav" />
-    </v-navigation-drawer>
-    <div class="footerProduction"><footbar /></div>
+    <div><footbar /></div>
   </div>
 </template>
 
@@ -86,6 +62,38 @@ export default {
           title: 'Wedding',
           url: 'https://cdn.pixabay.com/photo/2018/01/16/11/57/bride-3085841_960_720.jpg',
           description: '1,000 miles of wonder',
+        },
+      ],
+      conetent_service: [
+        {
+          title: 'Online Content / Viral Marketing',
+          detail:
+            'ในโลกยุคปัจจุบัน การตลาดออนไลน์เป็นหนึ่งในช่องทางสำคัญในการเข้าถึงกลุ่มลูกค้า เพื่อสร้างยอดขาย เพิ่มความรับรู้ในตัวแบรนด์ และสินค้า ได้ตลอด 24 ชั่วโมงอย่างไม่มีวันหยุด',
+        },
+        {
+          title: 'Presentation / Brand Corporate',
+          detail:
+            'หนึ่งในช่องทางสำคัญในการนำเสนอวิสัยทัศน์  สร้างความน่าเชื่อถือ และบริการให้กับบริษัทคู่ค้า หรือกลุ่มลูกค้าให้มีความมั่นใจใน แบรนด์ และผลิตภัณฑ์ มากยิ่งขึ้น',
+        },
+        {
+          title: 'Documentaries',
+          detail:
+            'ถ่ายทอดเรื่องราวแง่มุมต่าง ๆ ในสังคม เพื่อส่งเสริมภาพลักษณ์และการรับรู้ โครงการ CSR ทั้งของภาครัฐและเอกชน',
+        },
+        {
+          title: 'Infographic / 3D',
+          detail:
+            'จุดประกายสร้างยอดขายให้ปังด้วย	 Infographic และ 3D จากทีมงานมืออาชีพ',
+        },
+        {
+          title: 'Event Summary',
+          detail:
+            'บันทึกเรื่องราววันสำคัญ ช่วงเวลาพิเศษ งานแต่งงาน งานประชุม/สัมมนา งานแถลงข่าว งานแสดงสินค้า ทั้งในรูปแบบ Video และภาพนิ่ง',
+        },
+        {
+          title: 'Still Photography',
+          detail:
+            'สร้างสรรค์และถ่ายภาพนิ่งสินค้า แพ็คช๊อท เมนูอาหาร ภาพถ่ายบุคคล งานแต่งงาน งานอสังหาฯ บริษัท โรงงาน รวมไปถึงการออกแบบเพื่อทำสื่อโฆษณาต่าง ๆ',
         },
       ],
     }

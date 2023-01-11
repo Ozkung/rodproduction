@@ -1,23 +1,13 @@
 <template>
   <div>
-    <div id="footer" :style="`width: 100%;height: ${heightfoot}px`" />
-    <div
-      ref="foot"
-      class="d-flex justify-xl-start justify-lg-start flex-wrap margin-class"
-      style="position: absolute; bottom: 0px"
-    >
-      <div class="pr-3 about">
-        <div class="header">ABOUT</div>
-        <div class="detail">
-          {{ aboutDetail }}
-        </div>
-      </div>
-      <div class="contact">
-        <div class="header">CONTACT</div>
-        <div class="detail">Tel. : {{ contactDetail.tel }}</div>
-        <div class="detail2">E-mail : {{ contactDetail.emailTag }}</div>
+    <!-- <div id="footer" :style="`width: 100%;height: ${heightfoot}px`" /> -->
+    <div class="my-5 py-5">
+      <div class="foot_center">
+        <img src="logo.svg" width="70px" />
       </div>
     </div>
+    <div class="end_contact">TEL : {{ contactDetail.tel }}</div>
+    <div class="end_credit">©2022 R.O.D PRODUCTION</div>
   </div>
 </template>
 
@@ -39,8 +29,13 @@ export default {
       },
     }
   },
+  watch: {
+    // heightfoot() {
+    //   console.log('this.heightfoot :', this.heightfoot)
+    // }
+  },
   mounted() {
-    this.heightfoot = this.$refs.foot.offsetHeight
+    // this.heightfoot = this.$refs.foot.offsetHeight
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
     })
@@ -51,7 +46,7 @@ export default {
   methods: {
     onResize() {
       this.windowWidth = window.innerWidth
-      this.heightfoot = this.$refs.foot.offsetHeight
+      // this.heightfoot = this.$refs.foot.offsetHeight
     },
   },
 }
@@ -75,5 +70,27 @@ export default {
 }
 .contact {
   width: 190px;
+}
+.foot_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.end_contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+}
+.end_credit {
+  background: yellow;
+  color: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 20px;
 }
 </style>
