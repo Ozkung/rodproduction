@@ -35,7 +35,17 @@ export default {
       ],
     }
   },
+  computed: {
+    namePage() {
+      return this.$route.name
+    },
+  },
   watch: {
+    namePage() {
+      console.log('this.namePage :', this.namePage)
+      if (this.namePage !== 'index') this.bgcolor = 'background: #000'
+      else this.bgcolor = 'background: transparent'
+    },
     group() {
       this.drawer = false
     },
@@ -54,8 +64,12 @@ export default {
     onScroll(e) {
       this.windowTop =
         window.top.scrollY /* or: e.target.documentElement.scrollTop */
-      if (this.windowTop >= 690) this.bgcolor = 'background: #000'
-      else this.bgcolor = 'background: transparent'
+      if (this.$route.name == 'index') {
+        if (this.windowTop >= 690) this.bgcolor = 'background: #000'
+        else this.bgcolor = 'background: transparent'
+      } else {
+        this.bgcolor = 'background: #000'
+      }
     },
     onResize() {
       this.windowWidth = window.innerWidth
