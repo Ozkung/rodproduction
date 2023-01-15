@@ -1,10 +1,7 @@
 <template>
   <div
     class="value_fate"
-    style="
-      background: url('bg_forest.jpg') center right 80% no-repeat;
-      height: 100%;
-    "
+    style="background: url('bg_forest.jpg') 25% no-repeat fixed; height: 100%"
   >
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div>
@@ -30,8 +27,10 @@
 
     <div>
       <v-row no-gutters>
-        <v-col v-for="n in 4" :key="n">
-          <v-card class="pa-2 ma-1" tile outlined> col </v-card>
+        <v-col v-for="n in counter" :key="n">
+          <v-card class="pa-2 ma-1" tile outlined>
+            <img :src="`imgGallary/${n}.jpg`" width="100%" />
+          </v-card>
         </v-col>
       </v-row>
     </div>
@@ -89,12 +88,22 @@ export default {
         },
       ],
       msgrules: [(value) => !!value || 'Required.'],
+      counter: [],
     }
   },
   watch: {
     group() {
       this.drawer = false
     },
+  },
+  mounted() {
+    let num = []
+    for (let i = 0; i <= 28; i++) {
+      num.push(i)
+    }
+    num = this._.shuffle(num)
+    this.counter = num
+    this.counter.length = 4
   },
   methods: {
     openNav(item) {
@@ -126,9 +135,10 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
 .v-application {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Teko', 'Sarabun' !important;
 }
 </style>
 <style lang="scss" scoped>
@@ -186,14 +196,14 @@ export default {
   user-select: none;
   padding: 8% 14%;
   padding-bottom: 0px;
-  font-size: 8vw;
+  font-size: 3.4rem;
   font-weight: 600;
 }
 
 .detailContact {
   color: #fff;
   padding: 0px 14%;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .value_fate {

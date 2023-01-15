@@ -1,10 +1,67 @@
 <template>
   <div class="value_fate">
     <!-- <navbar ref="nav" @trick="openNav" /> -->
-    <div style="margin-top: 53px">
-      <div class="red_bg"></div>
+    <div class="flex_bg">
+      <div class="layout1">
+        <div class="title_contact">GET IN TOUCH</div>
+        <div class="detail">
+          สอบถามข้อมูลเพิ่มเติม หรือส่งรายละเอียดชิ้นงานที่ต้องการ
+          ตามแบบฟอร์มทางด้านขวา ทางเราพร้อมให้คำปรึกษาฟรี! ภายใน 1 วันทำการ
+          หรือติดต่อตามช่องทางด้านล่างนี้
+        </div>
+        <div class="subtitle_contact">TEL : {{ tel }}</div>
+        <div class="subtitle_contact">EMAIL : {{ emailTag }}</div>
+        <div class="subtitle_contact">LINE :</div>
+        <div>
+          <img src="qr.jpg" width="200px" />
+        </div>
+      </div>
+      <div class="layout2">
+        <div class="d-flex">
+          <div class="filedBox" v-for="item1 in emailSender0" :key="item1">
+            <div class="subtitle_contact">{{ item1.title }}</div>
+            <v-text-field
+              solo
+              v-model="item1.value"
+              :placeholder="item1.title"
+            ></v-text-field>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="filedBox" v-for="item2 in emailSender1" :key="item2">
+            <div class="subtitle_contact">{{ item2.title }}</div>
+            <v-text-field
+              solo
+              v-model="item2.value"
+              :placeholder="item2.title"
+            ></v-text-field>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="filedBox" v-for="item3 in emailSender2" :key="item3">
+            <div class="subtitle_contact">{{ item3.title }}</div>
+            <v-text-field
+              solo
+              v-model="item3.value"
+              :placeholder="item3.title"
+            ></v-text-field>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="filedBox">
+            <div class="subtitle_contact">{{ detail_convert.title }}</div>
+            <v-textarea solo v-model="detail_convert.value"> </v-textarea>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="filedBox">
+            <v-btn color="error" large>
+              <div style="font-size: 18px">SUBMIT</div>
+            </v-btn>
+          </div>
+        </div>
+      </div>
     </div>
-
     <div class="footerProduction"><footbar /></div>
   </div>
 </template>
@@ -18,47 +75,81 @@ export default {
   components: { navbar, list, footbar },
   data() {
     return {
+      emailSender0: [
+        { title: 'NAME', value: '' },
+        { title: 'COMPANY', value: '' },
+      ],
+      emailSender1: [
+        { title: 'EMAIL', value: '' },
+        { title: 'PHONE NUMBER', value: '' },
+      ],
+      emailSender2: [
+        { title: 'SERVICE REQUEST', value: '' },
+        { title: 'BUDGET', value: '' },
+      ],
+      detail_convert: { title: 'DETAIL', value: '' },
       group: null,
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
       emailTag: 'rod.mpjt@gmail.com',
       tel: '087-102-9600',
-      cusEmail: '',
-      cusMeassage: '',
-      checkEmail: false,
-      vaildation: false,
-      emailrules: [
-        (value) => !!value || 'Required.',
-        (value) => {
-          const pattern =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          this.openCheckEmail(pattern.test(value))
-          return pattern.test(value) || 'Invalid e-mail.'
-        },
-      ],
-      msgrules: [(value) => !!value || 'Required.'],
     }
   },
-  methods: {
-    sendMail() {
-      if (this.checkEmail == true && this.cusMeassage != '') {
-        this.$mail.send({
-          from: this.cusEmail,
-          subject: 'Contact form Webpage',
-          text: this.cusMeassage,
-        })
-      } else {
-        this.vaildation = true
-      }
-    },
-    openCheckEmail(item) {
-      this.checkEmail = item
-    },
-  },
+  methods: {},
 }
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+.v-application {
+  font-family: 'Teko', 'Sarabun' !important;
+}
+.v-application--wrap {
+  background: black;
+}
+</style>
 <style lang="scss" scoped>
-.red_bg {
-  background: red;
+.flex_bg {
+  color: #fff;
+  margin: 100px auto;
+  height: 100%;
+  width: 100%;
+  padding: 0px 5%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  .layout1 {
+    width: 316px;
+    .title_contact {
+      padding-bottom: 16px;
+      font-weight: 800;
+      font-size: 56px;
+    }
+    .detail {
+      padding-bottom: 16px;
+    }
+    .subtitle_contact {
+      padding-bottom: 16px;
+      font-size: 25px;
+    }
+  }
+  .layout2 {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: auto;
+    margin-top: 60px;
+    .subtitle_contact {
+      font-size: 18px;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .flex_bg {
+    margin-top: 100px;
+    flex-wrap: wrap;
+  }
 }
 .title_point {
   user-select: none;
@@ -125,5 +216,15 @@ export default {
 .detailContact {
   padding: 0px 14%;
   font-size: 18px;
+}
+.footerProduction {
+  div {
+    background: #000;
+  }
+}
+
+.filedBox {
+  width: 100%;
+  margin: 0 24px;
 }
 </style>

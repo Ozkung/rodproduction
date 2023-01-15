@@ -9,14 +9,16 @@
       />
       <img class="cursorP" src="rod.svg" @click="rootLink('/')" />
     </div>
-    <div class="uncheck">
+    <div class="uncheck d-none" v-if="windowWidth > 780">
       <div class="pr-5 cursorP" @click="rootLink('/')">HOME</div>
       <div class="pr-5 cursorP" @click="rootLink('/about/')">ABOUT</div>
       <div class="pr-5 cursorP" @click="rootLink('/service/')">SERVICES</div>
       <div class="pr-5 cursorP" @click="rootLink('/contact/')">CONTACT</div>
     </div>
     <div v-if="windowWidth < 780" class="mx-3">
-      <v-app-bar-nav-icon @click.stop="trickMenu()"></v-app-bar-nav-icon>
+      <v-app-bar dark color="transparent" class="elevation-0">
+        <v-app-bar-nav-icon @click.stop="trickMenu()"></v-app-bar-nav-icon>
+      </v-app-bar>
     </div>
   </div>
 </template>

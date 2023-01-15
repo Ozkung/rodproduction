@@ -29,7 +29,8 @@
     <!-- sercvice -->
     <div
       style="
-        background: url('RodReel2021.mp4_snapshot_01.17.582.jpg');
+        background: url('RodReel2021.mp4_snapshot_01.17.582.jpg') no-repeat
+          fixed;
         padding-bottom: 20px;
       "
     >
@@ -37,20 +38,30 @@
         <div style="color: #fff; font-size: 3.4rem">Service</div>
       </div>
       <div class="grid_services">
-        <img v-for="itemed in slides" :key="itemed" :src="itemed" width="28%" />
+        <img
+          v-for="itemed in slides"
+          :key="itemed"
+          :src="itemed"
+          width="28%"
+          @click="rootLink('/service/')"
+        />
       </div>
     </div>
     <div>
       <v-row no-gutters>
-        <v-col v-for="n in 4" :key="n">
-          <v-card class="pa-2 ma-1" tile outlined> col </v-card>
+        <v-col v-for="n in loop1" :key="n">
+          <div class="ma-1">
+            <img class="imgH" :src="`imgGallary/${n}.jpg`" width="100%" />
+          </div>
         </v-col>
       </v-row>
     </div>
     <div>
       <v-row no-gutters>
-        <v-col v-for="n in 4" :key="n">
-          <v-card class="pa-2 ma-1" tile outlined> col </v-card>
+        <v-col v-for="n in loop2" :key="n">
+          <div class="ma-1">
+            <img class="imgH" :src="`imgGallary/${n}.jpg`" width="100%" />
+          </div>
         </v-col>
       </v-row>
     </div>
@@ -150,6 +161,9 @@ export default {
         // },
       ],
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
+      counter: [],
+      loop1: [],
+      loop2: [],
     }
   },
   watch: {
@@ -162,7 +176,31 @@ export default {
     //   }
     // },
   },
+  mounted() {
+    let num = []
+    for (let i = 0; i <= 28; i++) {
+      num.push(i)
+    }
+    num = this._.shuffle(num)
+    this.counter = num
+    this.counter.length = 8
+    this.loop1 = [
+      this.counter[0],
+      this.counter[1],
+      this.counter[2],
+      this.counter[3],
+    ]
+    this.loop2 = [
+      this.counter[4],
+      this.counter[5],
+      this.counter[6],
+      this.counter[7],
+    ]
+  },
   methods: {
+    rootLink(item) {
+      this.$router.push({ path: item })
+    },
     openNav(item) {
       this.drawer = item
     },
@@ -182,8 +220,9 @@ export default {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
 .v-application {
-  font-family: 'Teko', sans-serif !important;
+  font-family: 'Teko', 'Sarabun' !important;
 }
 .v-application--wrap {
   background: black;
@@ -331,16 +370,22 @@ export default {
   img {
     padding: 8px;
     cursor: pointer;
+    transition: transform 0.2s; /* Animation */
+    &:hover {
+      transform: scale(1.08);
+    }
   }
 }
 
+.imgH {
+  height: 229px;
+}
 @media only screen and (max-width: 390px) {
   .grid_services {
     max-width: unset;
     white-space: nowrap;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    overflow: hidden;
     overflow-x: scroll;
     img {
       padding: 8px;
