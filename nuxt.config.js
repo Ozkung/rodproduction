@@ -26,7 +26,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/masonry.js', ssr: false },
-    { src:'~/plugins/lodash.js'}
+    { src: '~/plugins/lodash.js' },
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -37,8 +37,8 @@ export default {
     '@nuxtjs/vuetify',
   ],
 
-  env:{
-    TEST: 'TEST'
+  env: {
+    TEST: 'TEST',
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -46,19 +46,23 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // Hotmail mail
-    ['nuxt-mail', {
-      message: {
-        to: 'rod.mpjt@gmail.com', cc: 'Csuwatikul@gmail.com' 
-      },
-      smtp: {
-        host: 'smtp.live.com',
-        port: 587,
-        auth: {
-          user: 'blackraider86@hotmail.com',
-          pass: 'Csuwatikul7890'
+    [
+      'nuxt-mail',
+      {
+        message: {
+          to: 'rod.mpjt@gmail.com',
+          cc: 'Csuwatikul@gmail.com',
+        },
+        smtp: {
+          host: 'smtp.live.com',
+          port: 587,
+          auth: {
+            user: 'blackraider86@hotmail.com',
+            pass: 'Csuwatikul7890',
+          },
         },
       },
-    }],
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -67,7 +71,7 @@ export default {
     baseURL: '/rodproduction',
   },
   router: {
-    base: '/'
+    base: '/rodproduction',
   },
   target: 'static',
 
@@ -92,6 +96,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    postcss: false
+    postcss: false,
   },
 }
