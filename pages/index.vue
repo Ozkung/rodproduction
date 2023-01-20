@@ -9,7 +9,13 @@
           and branded content.
         </div>
         <div class="btn">
-          <v-btn class="btn_contact" depressed color="error">CONTACT</v-btn>
+          <v-btn
+            @click="rootLink('/contact/')"
+            class="btn_contact"
+            depressed
+            color="error"
+            >CONTACT</v-btn
+          >
         </div>
       </div>
       <div class="bgvdo">
@@ -30,7 +36,13 @@
           and branded content.
         </div>
         <div class="btn">
-          <v-btn class="btn_contact" depressed color="error">CONTACT</v-btn>
+          <v-btn
+            @click="rootLink('/contact/')"
+            class="btn_contact"
+            depressed
+            color="error"
+            >CONTACT</v-btn
+          >
         </div>
       </div>
       <div style="font-weight: 600; font-size: 3.4rem">R.O.D Production</div>
@@ -264,14 +276,16 @@ export default {
       this.windowWidth = window.innerWidth
     },
     rootLink(item, index) {
-      let num = 0
-      if (index == 0) num = 5
-      if (index == 1) num = 2
-      if (index == 2) num = 1
-      if (index == 3) num = 0
-      if (index == 4) num = 3
-      if (index == 5) num = 4
-      this.$store.commit('changeid', num)
+      if (index) {
+        let num = 0
+        if (index == 0) num = 5
+        if (index == 1) num = 2
+        if (index == 2) num = 1
+        if (index == 3) num = 0
+        if (index == 4) num = 3
+        if (index == 5) num = 4
+        this.$store.commit('changeid', num)
+      }
       this.$router.push({ path: item })
     },
     openNav(item) {
