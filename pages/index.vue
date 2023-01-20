@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="app_main">
-      <div class="vdo_text_content">
+      <div class="vdo_text_content" v-if="windowWidth > 1000">
         <div class="topic">Media company base in bangkok</div>
         <div class="content">We provide a full production services for</div>
         <div class="content">
@@ -12,12 +12,27 @@
           <v-btn class="btn_contact" depressed color="error">CONTACT</v-btn>
         </div>
       </div>
-      <video width="100%" muted autoplay loop>
-        <source src="Rodreel2021-1.mp4" type="video/mp4" />
-      </video>
+      <div class="bgvdo">
+        <video class="vdo" muted autoplay loop>
+          <source src="Rodreel2021-1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div v-if="windowWidth < 1000" class="topic_ab">
+        Media company base in bangkok
+      </div>
     </div>
     <!-- word -->
     <div class="my_advice my-5">
+      <div class="res_mobile" v-if="windowWidth < 1000">
+        <div class="content">We provide a full production services for</div>
+        <div class="content">
+          commercials, short films, video online, documentaries, music videos
+          and branded content.
+        </div>
+        <div class="btn">
+          <v-btn class="btn_contact" depressed color="error">CONTACT</v-btn>
+        </div>
+      </div>
       <div style="font-weight: 600; font-size: 3.4rem">R.O.D Production</div>
       <br />
       <div class="content">
@@ -196,6 +211,8 @@ export default {
       loop1: [],
       loop2: [],
       listCheck: [],
+      hide: false,
+      windowWidth: window.innerWidth,
     }
   },
   watch: {
@@ -229,8 +246,23 @@ export default {
       this.listCheck[6],
       this.listCheck[7],
     ]
+    window.addEventListener('scroll', this.onScroll)
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize)
+    })
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('resize', this.onResize)
   },
   methods: {
+    onScroll(e) {
+      this.windowTop = window.top.scrollY
+      if (this.windowTop >= 690) this.hide = false
+    },
+    onResize() {
+      this.windowWidth = window.innerWidth
+    },
     rootLink(item, index) {
       let num = 0
       if (index == 0) num = 5
@@ -278,8 +310,8 @@ export default {
 .my_advice {
   color: #fff;
   margin: {
-    left: 6rem;
-    right: 6rem;
+    left: 6vw;
+    right: 6vw;
   }
   .title {
     font-weight: 600;
@@ -433,6 +465,62 @@ export default {
   width: 100%;
   height: 100%;
 }
+
+.res_mobile {
+  .topic {
+    text-shadow: 2px 2px 5px #000;
+    font-weight: 600;
+    font-size: 3.4rem;
+    word-break: break-all;
+  }
+  .content {
+    text-shadow: 2px 2px 5px #000;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    padding-top: 4px;
+    word-break: break-all;
+    &:nth-child(3) {
+      padding: {
+        top: 0px;
+        bottom: 24px;
+      }
+    }
+  }
+  .btn {
+    .btn_contact {
+      width: 27%;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.bgvdo {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+  .vdo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.topic_ab {
+  padding: 6vw;
+  position: absolute;
+  color: #fff;
+  top: 650px;
+  text-shadow: 2px 2px 5px #000;
+  font-weight: 600;
+  font-size: 3.4rem;
+  word-break: break-all;
+}
 @media only screen and (max-width: 390px) {
   .grid_services {
     max-width: unset;
@@ -443,6 +531,24 @@ export default {
     img {
       padding: 8px;
       cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .bgvdo {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 844px;
+    .vdo {
+      position: absolute;
+      top: 0;
+      left: -450px;
+      bottom: 0;
+      right: 0;
+      width: unset;
+      height: 844px;
     }
   }
 }
