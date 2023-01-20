@@ -6,7 +6,7 @@
       v-for="(item, index) in conetent_service"
       :key="index"
     >
-      <div class="pa-4">
+      <div class="pa-4" ref="id_backword">
         <div style="font-size: 48px">{{ item.title }}</div>
         <div style="font-size: 28px">{{ item.detail }}</div>
         <div class="vdocomp" v-if="item.vdo">
@@ -28,7 +28,9 @@
         </div>
       </div>
     </div>
-
+    <v-navigation-drawer v-model="drawer" width="100%" fixed>
+      <list @link="closeNav" />
+    </v-navigation-drawer>
     <div><footbar /></div>
   </div>
 </template>
@@ -56,7 +58,6 @@ export default {
             'https://www.youtube.com/embed/WJRoGy4hf5I',
             'https://www.youtube.com/embed/2evs6DJIvDM',
             'https://www.youtube.com/embed/vp2KRMj3DXY',
-            'https://www.youtube.com/embed/8LZR0NK6A-8?controls=0',
             'https://www.youtube.com/embed/2vLmKG3suqs',
             'https://www.youtube.com/embed/1jNF1OOc1qc',
             'https://www.youtube.com/embed/lIQV_YXnLzQ',
@@ -103,10 +104,7 @@ export default {
           title: 'Event Summary',
           detail:
             'บันทึกเรื่องราววันสำคัญ ช่วงเวลาพิเศษ งานแต่งงาน งานประชุม/สัมมนา งานแถลงข่าว งานแสดงสินค้า ทั้งในรูปแบบ Video และภาพนิ่ง',
-          vdo: [
-            'https://www.youtube.com/embed/MR78uInBdcw',
-            'https://www.youtube.com/embed/_ZMJCRFzM9M',
-          ],
+          vdo: ['https://www.youtube.com/embed/_ZMJCRFzM9M'],
         },
         {
           bg: '#60606',
@@ -117,6 +115,13 @@ export default {
       ],
       counter: [],
     }
+  },
+  computed: {
+    goto_title() {
+      let str = this.$store.state.page_id
+
+      return str
+    },
   },
   watch: {
     group() {
@@ -130,6 +135,8 @@ export default {
     }
     num = this._.shuffle(num)
     this.counter = num
+
+    if (this.goto_title) this.gotoID(this.goto_title)
   },
   methods: {
     openNav(item) {
@@ -141,6 +148,15 @@ export default {
     },
     selectpage() {
       this.drawer = false
+    },
+    gotoID(val) {
+      setTimeout(() => {
+        window.scrollTo({
+          top: this.$refs.id_backword[val].offsetTop - 60,
+          behavior: 'smooth',
+        })
+      }, 500)
+      this.$store.commit('changeid', 0)
     },
   },
 }
@@ -210,7 +226,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1280px) {
   .vdocomp {
     white-space: nowrap;
     overflow-x: scroll;

@@ -62,6 +62,9 @@
         </div>
       </div>
     </div>
+    <v-navigation-drawer v-model="drawer" width="100%" fixed>
+      <list @link="closeNav" />
+    </v-navigation-drawer>
     <div class="footerProduction"><footbar /></div>
   </div>
 </template>
@@ -75,6 +78,7 @@ export default {
   components: { navbar, list, footbar },
   data() {
     return {
+      drawer: false,
       emailSender0: [
         { title: 'NAME', value: '' },
         { title: 'COMPANY', value: '' },
@@ -94,7 +98,15 @@ export default {
       tel: '087-102-9600',
     }
   },
-  methods: {},
+  methods: {
+    openNav(item) {
+      this.drawer = item
+    },
+    closeNav() {
+      this.drawer = false
+      // this.$refs.nav.closeMenu(false)
+    },
+  },
 }
 </script>
 <style>

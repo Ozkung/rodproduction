@@ -9,7 +9,7 @@
       />
       <img class="cursorP" src="rod.svg" @click="rootLink('/')" />
     </div>
-    <div class="uncheck d-none" v-if="windowWidth > 780">
+    <div class="uncheck" v-if="windowWidth > 780">
       <div class="pr-5 cursorP" @click="rootLink('/')">HOME</div>
       <div class="pr-5 cursorP" @click="rootLink('/about/')">ABOUT</div>
       <div class="pr-5 cursorP" @click="rootLink('/service/')">SERVICES</div>
@@ -95,7 +95,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  z-index: 15;
+  z-index: 5;
   width: 100%;
   transition: background 0.5s ease;
 }

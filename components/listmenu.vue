@@ -1,33 +1,14 @@
 <template>
   <div>
     <v-list nav dense>
-      <v-list-item>
-        <v-list-item-title class="unselect" @click="goto('/')">
-          Home
-        </v-list-item-title>
-      </v-list-item>
-
-      <v-list-group :value="true">
-        <template v-slot:activator>
-          <v-list-item-title>Showreel</v-list-item-title>
-        </template>
-
-        <v-list-item v-for="(item, i) in admins" :key="i" class="ml-7" link>
-          <v-list-item-title
-            v-text="item[0]"
-            @click="goto(`/${item[0].toLowerCase()}`)"
-          ></v-list-item-title>
-        </v-list-item>
-      </v-list-group>
-
-      <v-list-item>
-        <v-list-item-title class="unselect" @click="goto('/service')">
-          Services
-        </v-list-item-title>
-      </v-list-item>
-      <v-list-item>
-        <v-list-item-title class="unselect" @click="goto('/contact')">
-          Contact
+      <v-list-item
+        class="select_menu"
+        v-for="(item, index) in list"
+        :key="index"
+        @click="goto(item.link)"
+      >
+        <v-list-item-title class="unselect">
+          {{ item.menu }}
         </v-list-item-title>
       </v-list-item>
     </v-list>
@@ -38,9 +19,11 @@
 export default {
   data() {
     return {
-      admins: [
-        ['Image', 'mdi-account-multiple-outline'],
-        ['Video', 'mdi-cog-outline'],
+      list: [
+        { menu: 'Home', link: '/' },
+        { menu: 'About', link: '/about' },
+        { menu: 'Services', link: '/service' },
+        { menu: 'Contact', link: '/contact' },
       ],
     }
   },
@@ -55,5 +38,11 @@ export default {
 <style lang="scss" scoped>
 .unselect {
   user-select: none;
+}
+.select_menu {
+  cursor: pointer;
+  &:hover {
+    background: rgba(102, 102, 102, 0.11);
+  }
 }
 </style>

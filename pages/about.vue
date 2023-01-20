@@ -25,14 +25,28 @@
       </div>
     </div>
 
-    <div>
-      <v-row no-gutters>
-        <v-col v-for="n in counter" :key="n">
-          <v-card class="pa-2 ma-1" tile outlined>
-            <img :src="`imgGallary/${n}.jpg`" width="100%" />
-          </v-card>
-        </v-col>
-      </v-row>
+    <div class="d-flex" style="overflow-x: auto">
+      <div
+        style="
+          position: relative;
+          overflow: hidden;
+          min-width: 320px;
+          width: 100%;
+          height: 240px;
+          padding-top: 14%;
+        "
+        v-for="n in listCheck"
+        :key="n"
+        class="ma-1"
+      >
+        <iframe
+          class="responsive-iframe"
+          :src="n"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
 
     <div class="my-4 detailContact">
@@ -71,7 +85,7 @@ export default {
     return {
       drawer: false,
       group: null,
-      navItem: ['Home', 'Showreel', 'Services', 'Contact'],
+      navItem: ['Home', 'About', 'Services', 'Contact'],
       emailTag: 'rod.mpjt@gmail.com',
       tel: '087-102-9600',
       cusEmail: '',
@@ -89,6 +103,7 @@ export default {
       ],
       msgrules: [(value) => !!value || 'Required.'],
       counter: [],
+      listCheck: [],
     }
   },
   watch: {
@@ -96,7 +111,15 @@ export default {
       this.drawer = false
     },
   },
+  computed: {
+    listVDO() {
+      return this.$store.state.youtube
+    },
+  },
   mounted() {
+    this.listCheck = this.$_.cloneDeep(this.listVDO)
+    this.listCheck = this.$_.shuffle(this.listCheck)
+    this.listCheck.length = 4
     let num = []
     for (let i = 0; i <= 28; i++) {
       num.push(i)
@@ -213,5 +236,15 @@ export default {
 }
 .fit_bottom {
   width: 100%;
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

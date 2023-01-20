@@ -39,32 +39,63 @@
       </div>
       <div class="grid_services">
         <img
-          v-for="itemed in slides"
-          :key="itemed"
+          v-for="(itemed, index) in slides"
+          :key="index"
           :src="itemed"
           width="28%"
-          @click="rootLink('/service/')"
+          @click="rootLink('/service/', index)"
         />
       </div>
     </div>
-    <div>
-      <v-row no-gutters>
-        <v-col v-for="n in loop1" :key="n">
-          <div class="ma-1">
-            <img class="imgH" :src="`imgGallary/${n}.jpg`" width="100%" />
-          </div>
-        </v-col>
-      </v-row>
+    <div class="d-flex" style="overflow-x: auto">
+      <div
+        style="
+          position: relative;
+          overflow: hidden;
+          min-width: 320px;
+          width: 100%;
+          height: 240px;
+          padding-top: 14%;
+        "
+        v-for="n in loop1"
+        :key="n"
+        class="ma-1"
+      >
+        <iframe
+          class="responsive-iframe"
+          :src="n"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
-    <div>
-      <v-row no-gutters>
-        <v-col v-for="n in loop2" :key="n">
-          <div class="ma-1">
-            <img class="imgH" :src="`imgGallary/${n}.jpg`" width="100%" />
-          </div>
-        </v-col>
-      </v-row>
+    <div class="d-flex" style="overflow-x: auto">
+      <div
+        style="
+          position: relative;
+          overflow: hidden;
+          min-width: 320px;
+          width: 100%;
+          height: 240px;
+          padding-top: 14%;
+        "
+        v-for="n in loop2"
+        :key="n"
+        class="ma-1"
+      >
+        <iframe
+          class="responsive-iframe"
+          :src="n"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
+    <v-navigation-drawer v-model="drawer" width="100%" fixed>
+      <list @link="closeNav" />
+    </v-navigation-drawer>
     <div>
       <footbar />
     </div>
@@ -164,6 +195,7 @@ export default {
       counter: [],
       loop1: [],
       loop2: [],
+      listCheck: [],
     }
   },
   watch: {
@@ -176,29 +208,38 @@ export default {
     //   }
     // },
   },
+  computed: {
+    listVDO() {
+      return this.$store.state.youtube
+    },
+  },
   mounted() {
-    let num = []
-    for (let i = 0; i <= 28; i++) {
-      num.push(i)
-    }
-    num = this._.shuffle(num)
-    this.counter = num
-    this.counter.length = 8
+    this.listCheck = this.$_.cloneDeep(this.listVDO)
+    this.listCheck = this.$_.shuffle(this.listCheck)
+    this.listCheck.length = 8
     this.loop1 = [
-      this.counter[0],
-      this.counter[1],
-      this.counter[2],
-      this.counter[3],
+      this.listCheck[0],
+      this.listCheck[1],
+      this.listCheck[2],
+      this.listCheck[3],
     ]
     this.loop2 = [
-      this.counter[4],
-      this.counter[5],
-      this.counter[6],
-      this.counter[7],
+      this.listCheck[4],
+      this.listCheck[5],
+      this.listCheck[6],
+      this.listCheck[7],
     ]
   },
   methods: {
-    rootLink(item) {
+    rootLink(item, index) {
+      let num = 0
+      if (index == 0) num = 5
+      if (index == 1) num = 2
+      if (index == 2) num = 1
+      if (index == 3) num = 0
+      if (index == 4) num = 3
+      if (index == 5) num = 4
+      this.$store.commit('changeid', num)
       this.$router.push({ path: item })
     },
     openNav(item) {
@@ -250,7 +291,7 @@ export default {
 }
 .vdo_text_content {
   position: absolute;
-  z-index: 10;
+  z-index: 5;
   color: #fff;
   height: 100%;
   width: 100%;
@@ -260,11 +301,13 @@ export default {
   margin-left: 10.7rem;
   width: 52vw;
   .topic {
+    text-shadow: 2px 2px 5px #000;
     font-weight: 600;
     font-size: 3.4rem;
     word-break: break-all;
   }
   .content {
+    text-shadow: 2px 2px 5px #000;
     font-size: 1.4rem;
     line-height: 1.25;
     padding-top: 4px;
@@ -379,6 +422,16 @@ export default {
 
 .imgH {
   height: 229px;
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 @media only screen and (max-width: 390px) {
   .grid_services {
