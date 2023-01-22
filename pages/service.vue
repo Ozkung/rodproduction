@@ -8,7 +8,7 @@
     >
       <div class="pa-4" ref="id_backword">
         <div style="font-size: 48px">{{ item.title }}</div>
-        <div style="font-size: 28px">{{ item.detail }}</div>
+        <div style="font-size: 16px">{{ item.detail }}</div>
         <div class="vdocomp" v-if="item.vdo">
           <div style="padding: 4px" v-for="vdo in item.vdo" :key="vdo">
             <iframe
