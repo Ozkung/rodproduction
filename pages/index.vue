@@ -54,13 +54,7 @@
       </div>
     </div>
     <!-- sercvice -->
-    <div
-      style="
-        background: url('RodReel2021.mp4_snapshot_01.17.582.jpg') no-repeat
-          fixed;
-        padding-bottom: 20px;
-      "
-    >
+    <div class="fixedImg">
       <div class="d-flex justify-center align-center">
         <div style="color: #fff; font-size: 3.4rem">Service</div>
       </div>
@@ -547,6 +541,10 @@ export default {
   }
 }
 
+.fixedImg {
+  background: url('RodReel2021.mp4_snapshot_01.17.582.jpg') no-repeat fixed;
+  padding-bottom: 20px;
+}
 @media only screen and (max-width: 1000px) {
   .bgvdo {
     position: relative;
