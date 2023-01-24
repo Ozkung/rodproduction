@@ -15,7 +15,7 @@
       <div class="pr-5 cursorP" @click="rootLink('/service/')">SERVICES</div>
       <div class="pr-5 cursorP" @click="rootLink('/contact/')">CONTACT</div>
     </div>
-    <div v-if="windowWidth < 780" class="mx-3">
+    <div v-if="windowWidth < 780" class="mx-2">
       <v-app-bar dark color="transparent" class="elevation-0">
         <v-app-bar-nav-icon @click.stop="trickMenu()"></v-app-bar-nav-icon>
       </v-app-bar>
