@@ -276,16 +276,14 @@ export default {
       this.windowWidth = window.innerWidth
     },
     rootLink(item, index) {
-      if (index) {
-        let num = 0
-        if (index == 0) num = 5
-        if (index == 1) num = 2
-        if (index == 2) num = 1
-        if (index == 3) num = 0
-        if (index == 4) num = 3
-        if (index == 5) num = 4
-        this.$store.commit('changeid', num)
-      }
+      let num = 0
+      if (index == 0) num = 5
+      if (index == 1) num = 2
+      if (index == 2) num = 1
+      if (index == 3) num = 0
+      if (index == 4) num = 3
+      if (index == 5) num = 4
+      this.$store.commit('changeid', num)
       this.$router.push({ path: item })
     },
     openNav(item) {
