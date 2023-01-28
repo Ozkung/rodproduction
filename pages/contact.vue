@@ -3,7 +3,7 @@
     <!-- <navbar ref="nav" @trick="openNav" /> -->
     <div class="flex_bg">
       <div class="layout1">
-        <div class="title_contact">GET IN TOUCH</div>
+        <div class="title_contact">HOW MAY WE HELP?</div>
         <div class="detail">
           สอบถามข้อมูลเพิ่มเติม กรอกรายละเอียดงานที่ต้องการ
           ตามแบบฟอร์มทางด้านขวาได้เลย ทีมงานของเราพร้อมดูแลให้คำปรึกษาฟรี! ภายใน 1 วันทำการ
