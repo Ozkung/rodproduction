@@ -2,7 +2,7 @@
   <div>
     <div class="app_main">
       <div class="vdo_text_content" v-if="windowWidth > 1000">
-        <div class="topic">Media company base in bangkok</div>
+        <div class="topic">Media team base in bangkok</div>
         <div class="content">We provide a full production services for</div>
         <div class="content">
           commercials, short films, video online, documentaries, music videos
