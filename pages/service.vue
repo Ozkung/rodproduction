@@ -67,7 +67,7 @@ export default {
         },
         {
           bg: '#252525',
-          title: 'Presentation / Brand Corporate',
+          title: 'Presentation / Brand Corporate / Music Video',
           detail:
             'หนึ่งในช่องทางสำคัญในการนำเสนอวิสัยทัศน์  สร้างความน่าเชื่อถือ และบริการให้กับบริษัทคู่ค้า หรือกลุ่มลูกค้าให้มีความมั่นใจใน แบรนด์ และผลิตภัณฑ์ มากยิ่งขึ้น',
           vdo: [
