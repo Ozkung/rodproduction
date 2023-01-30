@@ -5,7 +5,7 @@
         class="select_menu"
         v-for="(item, index) in list"
         :key="index"
-        @click="goto(item.link)"
+        @click="goto(item.linkss)"
       >
         <v-list-item-title class="unselect">
           {{ item.menu }}
@@ -20,17 +20,17 @@ export default {
   data() {
     return {
       list: [
-        { menu: 'Home', link: '/' },
-        { menu: 'About', link: '/about' },
-        { menu: 'Services', link: '/service' },
-        { menu: 'Contact', link: '/contact' },
+        { menu: 'Home', linkss: '/' },
+        { menu: 'About', linkss: '/about' },
+        { menu: 'Services', linkss: '/service' },
+        { menu: 'Contact', linkss: '/contact' },
       ],
     }
   },
   methods: {
     goto(item) {
       this.$router.push({ path: item })
-      this.$emit('link', false)
+      this.$emit('links', false)
     },
   },
 }

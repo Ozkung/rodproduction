@@ -67,7 +67,7 @@
     </div>
 
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @link="closeNav" />
+      <list @links="closeNav" />
     </v-navigation-drawer>
 
     <div style="background: #000"><footbar /></div>
@@ -87,7 +87,7 @@ export default {
       group: null,
       navItem: ['Home', 'About', 'Services', 'Contact'],
       emailTag: 'rod.mpjt@gmail.com',
-      tel: '087-102-9600',
+      // tel: '087-102-9600',
       cusEmail: '',
       cusMeassage: '',
       checkEmail: false,

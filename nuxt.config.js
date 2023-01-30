@@ -50,15 +50,19 @@ export default {
       'nuxt-mail',
       {
         message: {
-          to: 'rod.mpjt@gmail.com',
-          cc: 'Csuwatikul@gmail.com',
+          to: process.env.EMAIL_USER,
+          cc: [
+            'Csuwatikul@gmail.com',
+            'peot254@gmail.com',
+            'sanya.roknight@gmail.com',
+          ],
         },
         smtp: {
-          host: 'smtp.live.com',
-          port: 587,
+          host: 'smtp.gmail.com',
+          port: 25,
           auth: {
-            user: 'blackraider86@hotmail.com',
-            pass: 'Csuwatikul7890',
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
           },
         },
       },
@@ -97,5 +101,9 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: false,
+  },
+  env: {
+    EMAIL_USER: 'plugplayon@gmail.com',
+    EMAIL_PASS: 'nmgtwridwhzpdkfr',
   },
 }

@@ -23,7 +23,7 @@
       </masonry>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @link="closeNav" />
+      <list @links="closeNav" />
     </v-navigation-drawer>
     <div class="footerProduction"><footbar /></div>
   </div>

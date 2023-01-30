@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="end_contact">TEL : {{ contactDetail.tel }}</div>
-    <div class="end_credit">©2022 R.O.D PRODUCTION</div>
+    <div class="end_credit">©2023 R.O.D PRODUCTION</div>
   </div>
 </template>
 

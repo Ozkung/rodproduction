@@ -6,8 +6,8 @@
         <div class="title_contact">HOW MAY WE HELP?</div>
         <div class="detail">
           สอบถามข้อมูลเพิ่มเติม กรอกรายละเอียดงานที่ต้องการ
-          ตามแบบฟอร์มทางด้านขวาได้เลย ทีมงานของเราพร้อมดูแลให้คำปรึกษาฟรี! ภายใน 1 วันทำการ
-          หรือติดต่อตามช่องทางด้านล่างนี้
+          ตามแบบฟอร์มทางด้านขวาได้เลย ทีมงานของเราพร้อมดูแลให้คำปรึกษาฟรี! ภายใน
+          1 วันทำการ หรือติดต่อตามช่องทางด้านล่างนี้
         </div>
         <div class="subtitle_contact">TEL : {{ tel }}</div>
         <div class="subtitle_contact">EMAIL : {{ emailTag }}</div>
@@ -17,36 +17,57 @@
         </div>
       </div>
       <div class="layout2">
+        <!-- emailSender0 -->
         <div class="d-flex">
-          <div class="filedBox" v-for="item1 in emailSender0" :key="item1">
+          <div
+            class="filedBox"
+            v-for="(item1, index1) in emailSender0"
+            :key="index1"
+          >
             <div class="subtitle_contact">{{ item1.title }}</div>
             <v-text-field
               solo
               v-model="item1.value"
-              :placeholder="item1.title"
+              :placeholder="item1.placeholder"
             ></v-text-field>
           </div>
         </div>
+        <!-- emailSender1 -->
         <div class="d-flex">
-          <div class="filedBox" v-for="item2 in emailSender1" :key="item2">
+          <div
+            class="filedBox"
+            v-for="(item2, index2) in emailSender1"
+            :key="index2"
+          >
             <div class="subtitle_contact">{{ item2.title }}</div>
             <v-text-field
               solo
               v-model="item2.value"
-              :placeholder="item2.title"
+              :placeholder="item2.placeholder"
             ></v-text-field>
           </div>
         </div>
+        <!-- emailSender2 -->
         <div class="d-flex">
-          <div class="filedBox" v-for="item3 in emailSender2" :key="item3">
-            <div class="subtitle_contact">{{ item3.title }}</div>
+          <div class="filedBox">
+            <div class="subtitle_contact">{{ emailSender2[0].title }}</div>
+            <v-select
+              solo
+              :items="serviceList"
+              v-model="emailSender2[0].value"
+              :placeholder="emailSender2[0].placeholder"
+            ></v-select>
+          </div>
+          <div class="filedBox">
+            <div class="subtitle_contact">{{ emailSender2[1].title }}</div>
             <v-text-field
               solo
-              v-model="item3.value"
-              :placeholder="item3.title"
+              v-model="emailSender2[1].value"
+              :placeholder="emailSender2[1].placeholder"
             ></v-text-field>
           </div>
         </div>
+
         <div class="d-flex">
           <div class="filedBox">
             <div class="subtitle_contact">{{ detail_convert.title }}</div>
@@ -55,7 +76,7 @@
         </div>
         <div class="d-flex">
           <div class="filedBox">
-            <v-btn color="error" large>
+            <v-btn color="error" @click="sendEmail()" large>
               <div style="font-size: 18px">SUBMIT</div>
             </v-btn>
           </div>
@@ -63,7 +84,7 @@
       </div>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @link="closeNav" />
+      <list @links="closeNav" />
     </v-navigation-drawer>
     <div class="footerProduction"><footbar /></div>
   </div>
@@ -80,20 +101,28 @@ export default {
     return {
       drawer: false,
       emailSender0: [
-        { title: 'NAME', value: '' },
-        { title: 'COMPANY', value: '' },
+        { title: 'NAME', value: '', placeholder: 'Your Name' },
+        { title: 'COMPANY', value: '', placeholder: 'Your Company' },
       ],
       emailSender1: [
-        { title: 'EMAIL', value: '' },
-        { title: 'PHONE NUMBER', value: '' },
+        { title: 'EMAIL', value: '', placeholder: 'You Email' },
+        { title: 'PHONE NUMBER', value: '', placeholder: 'Your Phone Number' },
       ],
       emailSender2: [
-        { title: 'SERVICE REQUEST', value: '' },
-        { title: 'BUDGET', value: '' },
+        { title: 'SERVICE REQUEST', value: '', placeholder: 'Select One' },
+        { title: 'BUDGET', value: '', placeholder: 'ex. 10,000 THB' },
       ],
-      detail_convert: { title: 'DETAIL', value: '' },
+      detail_convert: { title: 'DETAIL', value: '', placeholder: 'Messsage' },
       group: null,
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
+      serviceList: [
+        'Online Content / Viral Marketing',
+        'Presentation / Brand Corporate',
+        'Documentaries',
+        'Infographic / 3D',
+        'Event Summary',
+        'Still Photography',
+      ],
       emailTag: 'rod.mpjt@gmail.com',
       tel: '087-102-9600',
     }
@@ -105,6 +134,20 @@ export default {
     closeNav() {
       this.drawer = false
       // this.$refs.nav.closeMenu(false)
+    },
+    async sendEmail() {
+      let name = '\nName: ' + this.emailSender0[0].value
+      let tels = '\nTel: ' + this.emailSender1[1].value
+      let detail = this.detail_convert.value
+      let company = '\nCompany: ' + this.emailSender0[1].value
+      let budget = '\nBudget: ' + this.emailSender2[1].value
+      let obj = {
+        from: this.emailSender1[0].value,
+        subject: this.emailSender2[0].value,
+        text: detail + name + company + budget + tels,
+      }
+      await this.$mail.send(obj)
+      console.log('object : contact2')
     },
   },
 }
@@ -149,6 +192,7 @@ export default {
     position: relative;
     bottom: 0px;
     width: 100%;
+    margin-left: 10rem;
     height: auto;
     margin-top: 60px;
     .subtitle_contact {
@@ -161,6 +205,9 @@ export default {
   .flex_bg {
     margin-top: 100px;
     flex-wrap: wrap;
+    .layout2 {
+      margin-left: 0px;
+    }
   }
 }
 .title_point {
