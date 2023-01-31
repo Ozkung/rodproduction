@@ -19,9 +19,14 @@
             ></iframe>
           </div>
         </div>
-        <div class="container" v-else>
+        <div v-else>
           <masonry :cols="{ default: 4, 1000: 3, 700: 2, 400: 1 }" :gutter="15">
-            <div v-for="prop in counter" :key="prop">
+            <div
+              class="hoverscale"
+              @click="modalScope(prop + 1)"
+              v-for="prop in counter"
+              :key="prop"
+            >
               <img :src="`imgGallary/${prop + 1}.jpg`" width="100%" />
             </div>
           </masonry>
@@ -31,6 +36,9 @@
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
       <list @links="closeNav" />
     </v-navigation-drawer>
+    <v-dialog v-model="dialog" width="800">
+      <img :src="`imgGallary/${initImg}.jpg`" width="100%" />
+    </v-dialog>
     <div><footbar /></div>
   </div>
 </template>
@@ -44,6 +52,7 @@ export default {
   components: { navbar, list, footbar },
   data() {
     return {
+      dialog: false,
       drawer: false,
       group: null,
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
@@ -114,6 +123,7 @@ export default {
         },
       ],
       counter: [],
+      initImg: '',
     }
   },
   computed: {
@@ -130,11 +140,12 @@ export default {
   },
   mounted() {
     let num = []
-    for (let i = 0; i <= 28; i++) {
+    for (let i = 0; i <= 53; i++) {
       num.push(i)
     }
     num = this._.shuffle(num)
     this.counter = num
+    this.counter.length = 16
 
     if (this.goto_title) this.gotoID(this.goto_title)
   },
@@ -157,6 +168,10 @@ export default {
         })
       }, 500)
       this.$store.commit('changeid', 0)
+    },
+    modalScope(item) {
+      this.initImg = item
+      this.dialog = true
     },
   },
 }
@@ -225,6 +240,13 @@ export default {
 .vdocomp {
   display: flex;
   flex-wrap: wrap;
+}
+
+.hoverscale {
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.04);
+  }
 }
 @media only screen and (max-width: 1280px) {
   .vdocomp {
