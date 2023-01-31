@@ -3,7 +3,7 @@
     <!-- <div id="footer" :style="`width: 100%;height: ${heightfoot}px`" /> -->
     <div class="my-5 py-5">
       <div class="foot_center">
-        <img src="logo.svg" width="70px" />
+        <img src="logo.svg" width="70px" @click="rootLink('/contact/')" />
       </div>
     </div>
     <div class="end_contact">TEL : {{ contactDetail.tel }}</div>
@@ -47,6 +47,9 @@ export default {
     onResize() {
       this.windowWidth = window.innerWidth
       // this.heightfoot = this.$refs.foot.offsetHeight
+    },
+    rootLink(item) {
+      this.$router.push({ path: item })
     },
   },
 }

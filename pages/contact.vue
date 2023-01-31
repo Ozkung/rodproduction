@@ -5,9 +5,10 @@
       <div class="layout1">
         <div class="title_contact">HOW MAY WE HELP?</div>
         <div class="detail">
-          สอบถามข้อมูลเพิ่มเติม กรอกรายละเอียดงานที่ต้องการ
-          ตามแบบฟอร์มทางด้านขวาได้เลย ทีมงานของเราพร้อมดูแลให้คำปรึกษาฟรี! ภายใน
-          1 วันทำการ หรือติดต่อตามช่องทางด้านล่างนี้
+          สอบถามข้อมูลเพิ่มเติม&nbsp;กรอกรายละเอียดงานที่ต้องการ
+          ตามแบบฟอร์มทางด้านขวาได้เลย
+          ทีมงานของเราพร้อมดูแลให้คำปรึกษาฟรี!&nbsp;ภายใน&nbsp;1&nbsp;วันทำการ
+          หรือติดต่อตามช่องทางด้านล่างนี้
         </div>
         <div class="subtitle_contact">TEL : {{ tel }}</div>
         <div class="subtitle_contact">EMAIL : {{ emailTag }}</div>
@@ -117,7 +118,7 @@ export default {
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
       serviceList: [
         'Online Content / Viral Marketing',
-        'Presentation / Brand Corporate',
+        'Presentation / Brand Corporate / Music Video',
         'Documentaries',
         'Infographic / 3D',
         'Event Summary',
@@ -181,6 +182,7 @@ export default {
       font-size: 32px;
     }
     .detail {
+      word-break: break-word;
       padding-bottom: 16px;
     }
     .subtitle_contact {
@@ -274,7 +276,7 @@ export default {
 }
 .detailContact {
   padding: 0px 14%;
-  font-size: 18px;
+  font-size: 16px;
 }
 .footerProduction {
   div {

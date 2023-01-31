@@ -86,7 +86,7 @@
     </div>
     <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
       <div v-for="n in loop2" :key="n" class="vdoContent1 ma-1">
-        <img width="100%" :src="`imggallary/${n == 0 ? n + 1 : n}.jpg`" />
+        <img width="100%" :src="`imggallary/${n}.jpg`" />
       </div>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
@@ -213,6 +213,7 @@ export default {
     for (let i = 0; i <= 53; i++) {
       num.push(i)
     }
+    num = num.filter((i) => i !== 0)
     num = num.filter((i) => i !== 8)
     num = num.filter((i) => i !== 9)
     num = num.filter((i) => i !== 10)
@@ -234,7 +235,7 @@ export default {
     num = num.filter((i) => i !== 52)
     let op = this.$_.cloneDeep(num)
     op = this._.shuffle(op)
-    console.log('op', op)
+    // console.log('op', op)
 
     op.length = 6
     this.loop2 = op
