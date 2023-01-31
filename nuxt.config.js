@@ -75,7 +75,7 @@ export default {
     baseURL: '/rodproduction',
   },
   router: {
-    base: '/rodproduction',
+    base: '/',
   },
   target: 'static',
 

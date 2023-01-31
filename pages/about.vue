@@ -156,9 +156,9 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap');
 .v-application {
-  font-family: 'Teko', 'Sarabun' !important;
+  font-family: 'Teko', 'IBM Plex Sans Thai' !important;
 }
 </style>
 <style lang="scss" scoped>

@@ -3,9 +3,9 @@
     <div class="app_main">
       <div class="vdo_text_content" v-if="windowWidth > 1000">
         <div class="topic">Media team base in bangkok</div>
-        <div class="content">We provide a full production services for
-          commercials, short films, video online, documentaries, music videos
-          and branded content.
+        <div class="content">
+          We provide a full production services for commercials, short films,
+          video online, documentaries, music videos and branded content.
         </div>
         <div class="btn">
           <v-btn
@@ -68,7 +68,7 @@
           v-for="(itemed, index) in slides"
           :key="index"
           :src="itemed"
-          width="28%"
+          width="32%"
           @click="rootLink('/service/', index)"
         />
       </div>
@@ -304,9 +304,9 @@ export default {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap');
 .v-application {
-  font-family: 'Teko', 'Sarabun' !important;
+  font-family: 'Teko', 'IBM Plex Sans Thai' !important;
 }
 .v-application--wrap {
   background: black;

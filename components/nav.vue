@@ -66,7 +66,7 @@ export default {
       this.windowTop =
         window.top.scrollY /* or: e.target.documentElement.scrollTop */
       if (this.$route.name == 'index') {
-        if (this.windowTop >= 690) this.bgcolor = 'background: #000'
+        if (this.windowTop >= 600) this.bgcolor = 'background: #000'
         else this.bgcolor = 'background: transparent'
       } else {
         this.bgcolor = 'background: #000'
@@ -97,12 +97,13 @@ export default {
   position: fixed;
   z-index: 5;
   width: 100%;
-  transition: background 0.5s ease;
+  transition: background 0.2s ease;
 }
 .cursorP {
   user-select: none;
   cursor: pointer;
   color: #fff;
+  text-shadow: 2px 2px 5px #000;
 }
 .logoTitle {
   width: 270px;
