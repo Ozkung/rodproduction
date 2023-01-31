@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="app_main">
-      <div class="vdo_text_content" v-if="windowWidth > 1000">
+      <div class="vdo_text_content" v-if="windowWidth > 800">
         <div class="topic">Media team base in bangkok</div>
         <div class="content">
           We provide a full production services for commercials, short films,
@@ -18,17 +18,18 @@
         </div>
       </div>
       <div class="bgvdo">
-        <video class="vdo" muted autoplay loop>
+        <video class="vdo" muted autoplay>
           <source src="Rodreel2021-1.mp4" type="video/mp4" />
         </video>
       </div>
-      <div v-if="windowWidth < 1000" class="topic_ab">
-        Media company base in bangkok
-      </div>
+      <!-- <div v-if="windowWidth < 400" class="topic_ab">
+        Media team base in bangkok
+      </div> -->
     </div>
     <!-- word -->
     <div class="my_advice my-5">
-      <div class="res_mobile" v-if="windowWidth < 1000">
+      <div class="res_mobile" v-if="windowWidth < 800">
+        <div class="topic">Media team base in bangkok</div>
         <div class="content">We provide a full production services for</div>
         <div class="content">
           commercials, short films, video online, documentaries, music videos
@@ -73,50 +74,19 @@
         />
       </div>
     </div>
-    <div class="d-flex" style="overflow-x: auto">
+    <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
       <div
-        style="
-          position: relative;
-          overflow: hidden;
-          min-width: 320px;
-          width: 100%;
-          height: 240px;
-          padding-top: 14%;
-        "
-        v-for="n in loop1"
-        :key="n"
-        class="ma-1"
+        style="cursor: pointer"
+        class="vdoContent ma-1"
+        v-for="(n, x) in loop1"
+        :key="x"
       >
-        <iframe
-          class="responsive-iframe"
-          :src="n"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+        <img width="100%" :src="n.thumb" @click="openlink(n.link)" />
       </div>
     </div>
-    <div class="d-flex" style="overflow-x: auto">
-      <div
-        style="
-          position: relative;
-          overflow: hidden;
-          min-width: 320px;
-          width: 100%;
-          height: 240px;
-          padding-top: 14%;
-        "
-        v-for="n in loop2"
-        :key="n"
-        class="ma-1"
-      >
-        <iframe
-          class="responsive-iframe"
-          :src="n"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+    <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
+      <div v-for="n in loop2" :key="n" class="vdoContent1 ma-1">
+        <img width="100%" :src="`imggallary/${n == 0 ? n + 1 : n}.jpg`" />
       </div>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
@@ -198,24 +168,6 @@ export default {
           url: 'https://cdn.pixabay.com/photo/2014/01/04/13/44/photographer-238502_960_720.jpg',
           description: '1,000 miles of wonder',
         },
-        // {
-        //   name: 'Info Graphic',
-        //   title: 'Info Graphic',
-        //   url: 'https://cdn.pixabay.com/photo/2020/08/27/21/05/design-5522955_960_720.jpg',
-        //   description: '1,000 miles of wonder',
-        // },
-        // {
-        //   name: '3D',
-        //   title: '3D',
-        //   url: 'https://cdn.pixabay.com/photo/2019/04/28/16/33/space-4163612_960_720.jpg',
-        //   description: '1,000 miles of wonder',
-        // },
-        // {
-        //   name: 'Wedding',
-        //   title: 'Wedding',
-        //   url: 'https://cdn.pixabay.com/photo/2018/01/16/11/57/bride-3085841_960_720.jpg',
-        //   description: '1,000 miles of wonder',
-        // },
       ],
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
       counter: [],
@@ -230,33 +182,62 @@ export default {
     group() {
       this.drawer = false
     },
-    // drawer() {
-    //   if (this.drawer == false) {
-    //     this.$refs.nav.closeMenu(false)
-    //   }
-    // },
   },
   computed: {
     listVDO() {
       return this.$store.state.youtube
     },
+    newlist() {
+      let arr = []
+      let online = this.$store.state.online
+      let present = this.$store.state.present
+      let doc = this.$store.state.theory
+      let info = this.$store.state.info
+      let eventSum = this.$store.state.eventSum
+      arr = arr.concat(online)
+      arr = arr.concat(present)
+      arr = arr.concat(doc)
+      arr = arr.concat(info)
+      arr = arr.concat(eventSum)
+
+      return arr
+    },
   },
   mounted() {
-    this.listCheck = this.$_.cloneDeep(this.listVDO)
-    this.listCheck = this.$_.shuffle(this.listCheck)
-    this.listCheck.length = 8
-    this.loop1 = [
-      this.listCheck[0],
-      this.listCheck[1],
-      this.listCheck[2],
-      this.listCheck[3],
-    ]
-    this.loop2 = [
-      this.listCheck[4],
-      this.listCheck[5],
-      this.listCheck[6],
-      this.listCheck[7],
-    ]
+    let open = this.$_.cloneDeep(this.newlist)
+    let shuf = this.$_.shuffle(open)
+    shuf.length = 4
+    this.loop1 = shuf
+
+    let num = []
+    for (let i = 0; i <= 53; i++) {
+      num.push(i)
+    }
+    num = num.filter((i) => i !== 8)
+    num = num.filter((i) => i !== 9)
+    num = num.filter((i) => i !== 10)
+    num = num.filter((i) => i !== 11)
+    num = num.filter((i) => i !== 17)
+    num = num.filter((i) => i !== 18)
+    num = num.filter((i) => i !== 21)
+    num = num.filter((i) => i !== 22)
+    num = num.filter((i) => i !== 23)
+    num = num.filter((i) => i !== 24)
+    num = num.filter((i) => i !== 25)
+    num = num.filter((i) => i !== 26)
+    num = num.filter((i) => i !== 27)
+    num = num.filter((i) => i !== 38)
+    num = num.filter((i) => i !== 39)
+    num = num.filter((i) => i !== 40)
+    num = num.filter((i) => i !== 44)
+    num = num.filter((i) => i !== 50)
+    num = num.filter((i) => i !== 52)
+    let op = this.$_.cloneDeep(num)
+    op = this._.shuffle(op)
+    console.log('op', op)
+
+    op.length = 6
+    this.loop2 = op
     window.addEventListener('scroll', this.onScroll)
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
@@ -298,6 +279,9 @@ export default {
     goto(item) {
       this.$router.push({ path: item })
       this.$emit('link', false)
+    },
+    openlink(prop) {
+      window.open(prop, '_blank')
     },
   },
 }
@@ -354,7 +338,7 @@ export default {
     font-size: 1.4rem;
     line-height: 1.25;
     padding-top: 4px;
-    word-break: break-all;
+    word-break: break-word;
     &:nth-child(3) {
       padding: {
         top: 0px;
@@ -482,14 +466,14 @@ export default {
     text-shadow: 2px 2px 5px #000;
     font-weight: 600;
     font-size: 3.4rem;
-    word-break: break-all;
+    word-break: break-word;
   }
   .content {
     text-shadow: 2px 2px 5px #000;
     font-size: 1.4rem;
     line-height: 1.25;
     padding-top: 4px;
-    word-break: break-all;
+    word-break: break-word;
     &:nth-child(3) {
       padding: {
         top: 0px;
@@ -532,34 +516,36 @@ export default {
   font-size: 3.4rem;
   word-break: break-all;
 }
-@media only screen and (max-width: 390px) {
-  .grid_services {
-    max-width: unset;
-    white-space: nowrap;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: scroll;
-    img {
-      padding: 8px;
-      cursor: pointer;
-    }
+
+.vdoContent {
+  min-width: 370px;
+  width: 100%;
+  &:hover {
+    transform: scale(1.08);
+  }
+}
+.vdoContent1 {
+  min-width: 300px;
+  width: 100%;
+  &:hover {
+    transform: scale(1.08);
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 400px) {
   .bgvdo {
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding-top: 844px;
+    padding-top: 500px;
     .vdo {
       position: absolute;
       top: 0;
-      left: -450px;
+      left: -250px;
       bottom: 0;
       right: 0;
       width: unset;
-      height: 844px;
+      height: 500px;
     }
   }
 }

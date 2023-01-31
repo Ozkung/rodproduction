@@ -22,12 +22,173 @@ export const state = () => ({
     'https://www.youtube.com/embed/_ZMJCRFzM9M',
   ],
   page_id: 0,
+  online: [
+    {
+      "thumb": "online/ss-01.png",
+      "link": "https://youtu.be/2evs6DJIvDM"
+    },
+    {
+      "thumb": "online/ss-02.png",
+      "link": "https://youtu.be/gPX1DW2RhhU"
+    },
+    {
+      "thumb": "online/ss-03.png",
+      "link": "https://youtu.be/1jNF1OOc1qc"
+    },
+    {
+      "thumb": "online/ss-04.png",
+      "link": "https://youtu.be/DwLMG67bVhg"
+    },
+    {
+      "thumb": "online/ss-05.png",
+      "link": "https://youtu.be/vp2KRMj3DXY"
+    },
+    {
+      "thumb": "online/ss-06.png",
+      "link": "https://youtu.be/lIQV_YXnLzQ"
+    },
+    {
+      "thumb": "online/ss-07.png",
+      "link": "https://youtu.be/WJRoGy4hf5I"
+    },
+    {
+      "thumb": "online/ss-08.png",
+      "link": "https://youtu.be/5njL2RX7wPc"
+    },
+    {
+      "thumb": "online/ss-09.png",
+      "link": "https://youtu.be/2vLmKG3suqs"
+    },
+    {
+      "thumb": "online/ss-10.png",
+      "link": "https://youtu.be/8GKIMtcZ5n0"
+    },
+    {
+      "thumb": "online/ss-18.png",
+      "link": "https://youtu.be/-GH1gprIeG8"
+    }
+  ],
+  present: [
+    {
+      "thumb": "presentation/ss-11.png",
+      "link": "https://youtu.be/EAfxPr5tVGE"
+    },
+    {
+      "thumb": "presentation/ss-14.png",
+      "link": "https://youtu.be/rA66mF6ywPk"
+    },
+    {
+      "thumb": "presentation/ss-16.png",
+      "link": "https://youtu.be/ZJeud33MOek"
+    },
+    {
+      "thumb": "presentation/ss-17.png",
+      "link": "https://youtu.be/6D9v7hM_AV8"
+    },
+    {
+      "thumb": "presentation/ss-29.png",
+      "link": "https://youtu.be/1H3P2CLyb6Y"
+    },
+    {
+      "thumb": "presentation/ss-30.png",
+      "link": "https://youtu.be/pJ_f0hbngyo"
+    },
+    {
+      "thumb": "presentation/ss3-02.png",
+      "link": "https://youtu.be/hS5sYcLEYrw"
+    }
+  ],
+  theory:[
+    {
+      "thumb": "documentaries/ss-13.png",
+      "link": "https://youtu.be/g7kZptM3qko"
+    },
+    {
+      "thumb": "documentaries/ss-21.png",
+      "link": "https://youtu.be/dSYi06ID5RU"
+    },
+    {
+      "thumb": "documentaries/ss-22.png",
+      "link": "https://youtu.be/gDfl1yTNxJI"
+    },
+    {
+      "thumb": "documentaries/ss-23.png",
+      "link": "https://youtu.be/IeQVe5_R65o"
+    }
+  ],
+  info: [
+    
+    {
+      "thumb": "infographic/ss-15.png",
+      "link": "https://youtu.be/-u2o_U_Z39U"
+    },
+    {
+      "thumb": "infographic/ss-24.png",
+      "link": "https://youtu.be/kHhDk-K8bqM"
+    },
+    {
+      "thumb": "infographic/ss-25.png",
+      "link": "https://youtu.be/OjyNaAwcLdo"
+    },
+    {
+      "thumb": "infographic/ss-26.png",
+      "link": "https://youtu.be/gOxw_dvqyZQ"
+    },
+    {
+      "thumb": "infographic/ss-25.png",
+      "link": "https://youtu.be/OjyNaAwcLdo"
+    },
+    {
+      "thumb": "infographic/ss-27.png",
+      "link": "https://youtu.be/8K-WYmeh_Dk"
+    },
+    {
+      "thumb": "infographic/ss-31.png",
+      "link": "https://youtu.be/LJyuAypn0Ek"
+    },
+    {
+      "thumb": "infographic/ss2-34.png",
+      "link": "https://youtu.be/xVAnee1D1dg"
+    },
+    {
+      "thumb": "infographic/ss2-35.png",
+      "link": "https://youtu.be/vlPhR1qaMH0"
+    },
+    {
+      "thumb": "infographic/ss2-36.png",
+      "link": "https://youtu.be/pti1FpfeRu8"
+    },
+    {
+      "thumb": "infographic/ss2-37.png",
+      "link": "https://youtu.be/1ppiGmOuQvo"
+    },
+  ],
+  eventSum: [
+    {
+      "thumb": "eventsummary/ss-12.png",
+      "link": "https://youtu.be/8LZR0NK6A-8"
+    },
+    {
+      "thumb": "eventsummary/ss-19.png",
+      "link": "https://youtu.be/jdp1gGWVxuo"
+    },
+    {
+      "thumb": "eventsummary/ss-20.png",
+      "link": "https://youtu.be/O9iwwcAJb6g"
+    },
+    {
+      "thumb": "eventsummary/ss-28.png",
+      "link": "https://youtu.be/_ZMJCRFzM9M"
+    },
+    {
+      "thumb": "eventsummary/ss3-01.png",
+      "link": "https://youtu.be/ZqXl86n7SBk"
+    }
+  ]
 })
 
 export const mutations = {
   changeid(state, val) {
-    console.log('val :', val)
     state.page_id = val
-    console.log('state.page_id :', state.page_id)
   },
 }
