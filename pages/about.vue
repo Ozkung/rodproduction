@@ -54,7 +54,7 @@
     </div>
     <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
       <div v-for="n in counter" :key="n" class="vdoContent1 ma-1">
-        <img width="100%" :src="`imggallary/${n}.jpg`" />
+        <img width="100%" :src="`imgGallary/${n}.jpg`" />
       </div>
     </div>
 
