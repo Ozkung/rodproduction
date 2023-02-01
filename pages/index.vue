@@ -27,7 +27,7 @@
           
         </div> -->
         <div class="bgvdo">
-          <video width="100%" class="vdo" autoplay muted loop>
+          <video id="convdo" width="100%" class="vdo" muted loop>
             <source src="Rodreel2021-1.mp4" type="video/mp4" />
           </video>
         </div>
@@ -279,7 +279,7 @@ export default {
       window.addEventListener('scroll', this.onScroll)
       this.$nextTick(() => {
         window.addEventListener('resize', this.onResize)
-        // document.getElementById('convdo').play()
+        document.getElementById('convdo').play()
         // document.addEventListener('contextmenu', (event) =>
         //   event.preventDefault()
         // )
