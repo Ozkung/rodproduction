@@ -7,7 +7,7 @@
         width="26px"
         @click="rootLink('/')"
       />
-      <img class="cursorP" src="rod.svg" @click="rootLink('/')" />
+      <img width="150px" class="cursorP" src="rod.svg" @click="rootLink('/')" />
     </div>
     <div class="uncheck" v-if="windowWidth > 780">
       <div class="pr-5 cursorP" @click="rootLink('/')">HOME</div>
@@ -106,7 +106,7 @@ export default {
   text-shadow: 2px 2px 5px #000;
 }
 .logoTitle {
-  width: 220px;
+  width: 270px;
   height: 100%;
   display: flex;
   align-items: center;
