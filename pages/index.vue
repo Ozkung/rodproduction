@@ -23,8 +23,11 @@
             >
           </div>
         </div>
+        <!-- <div class="bgvdo">
+          
+        </div> -->
         <div class="bgvdo">
-          <video class="vdo" muted autoplay loop>
+          <video width="100%" class="vdo" autoplay muted loop>
             <source src="Rodreel2021-1.mp4" type="video/mp4" />
           </video>
         </div>
@@ -33,7 +36,7 @@
       </div> -->
       </div>
       <!-- word -->
-      <div class="my_advice my-5">
+      <div class="my_advice">
         <div class="res_mobile" v-if="windowWidth < 800">
           <div class="topic">Media team base in bangkok</div>
           <div class="content">We provide a full production services for</div>
@@ -51,12 +54,23 @@
             >
           </div>
         </div>
-        <div style="font-weight: 600; font-size: 3.4rem">R.O.D Production</div>
-        <br />
-        <div class="content">
-          Our in-house creative team will assist you in consulting and
-          generating new ideas with the clients to ensure it reach objective
-          with limited budget.
+        <div
+          style="
+            background: #3a3a3a;
+            padding: 6vw;
+            padding-right: 6vw;
+            padding-top: 3vw;
+            padding-bottom: 3vw;
+          "
+        >
+          <div style="font-weight: 600; font-size: 3.4rem">
+            R.O.D Production
+          </div>
+          <div class="content">
+            Our in-house creative team will assist you in consulting and
+            generating new ideas with the clients to ensure it reach objective
+            with limited budget.
+          </div>
         </div>
       </div>
       <!-- sercvice -->
@@ -64,6 +78,7 @@
         style="
           background: url('RodReel2021.mp4_snapshot_01.17.582.jpg') no-repeat;
           background-attachment: fixed;
+          background-size: cover;
           padding-bottom: 20px;
         "
       >
@@ -218,8 +233,7 @@ export default {
       return arr
     },
   },
-  mounted() {
-    document.addEventListener('contextmenu', (event) => event.preventDefault())
+  async mounted() {
     let open = this.$_.cloneDeep(this.newlist)
     let shuf = this.$_.shuffle(open)
     shuf.length = 4
@@ -265,6 +279,10 @@ export default {
       window.addEventListener('scroll', this.onScroll)
       this.$nextTick(() => {
         window.addEventListener('resize', this.onResize)
+        // document.getElementById('convdo').play()
+        // document.addEventListener('contextmenu', (event) =>
+        //   event.preventDefault()
+        // )
       })
     }, 3000)
   },
@@ -365,10 +383,6 @@ export default {
 }
 .my_advice {
   color: #fff;
-  margin: {
-    left: 6vw;
-    right: 6vw;
-  }
   .title {
     font-weight: 600;
     font-size: 3.4rem !important;
@@ -379,7 +393,7 @@ export default {
 }
 .vdo_text_content {
   position: absolute;
-  z-index: 5;
+  z-index: 4;
   color: #fff;
   height: 100%;
   width: 100%;
@@ -523,6 +537,11 @@ export default {
 }
 
 .res_mobile {
+  padding: {
+    left: 6vw;
+    right: 6vw;
+    bottom: 6vw;
+  }
   .topic {
     text-shadow: 2px 2px 5px #000;
     font-weight: 600;
@@ -562,10 +581,6 @@ export default {
     left: 0;
     bottom: 0;
     right: 0;
-    min-height: 100%;
-    min-width: 100%;
-    height: auto !important;
-    width: auto !important;
   }
 }
 
@@ -613,7 +628,7 @@ export default {
     display: none;
   }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 400px) {
   .bgvdo {
     position: relative;
     overflow: hidden;

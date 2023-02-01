@@ -66,7 +66,7 @@ export default {
       this.windowTop =
         window.top.scrollY /* or: e.target.documentElement.scrollTop */
       if (this.$route.name == 'index') {
-        if (this.windowTop >= 600) this.bgcolor = 'background: #000'
+        if (this.windowTop >= 200) this.bgcolor = 'background: #000'
         else this.bgcolor = 'background: transparent'
       } else {
         this.bgcolor = 'background: #000'
