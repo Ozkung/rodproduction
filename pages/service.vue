@@ -1,48 +1,59 @@
 <template>
-  <div class="value_fate">
-    <div class="d-flex justify-center" style="font-size: 3.4rem">SERVICES</div>
-    <div
-      :style="`background: ${item.bg}`"
-      v-for="(item, index) in conetent_service"
-      :key="index"
-    >
-      <div class="pa-4" ref="id_backword">
-        <div style="font-size: 48px">{{ item.title }}</div>
-        <div style="font-size: 16px">{{ item.detail }}</div>
-        <!-- vdo -->
-        <div class="vdocomp" v-if="item.vdo">
-          <div style="padding: 4px" v-for="vdo in item.thumb" :key="vdo">
-            <img :src="vdo.thumb" class="imgres" @click="openlink(vdo.link)" />
-            <!-- <iframe
+  <div>
+    <div class="value_fate">
+      <div class="d-flex justify-center" style="font-size: 3.4rem">
+        SERVICES
+      </div>
+      <div
+        :style="`background: ${item.bg}`"
+        v-for="(item, index) in conetent_service"
+        :key="index"
+      >
+        <div class="pa-4" ref="id_backword">
+          <div style="font-size: 36px">{{ item.title }}</div>
+          <div style="font-size: 16px">{{ item.detail }}</div>
+          <!-- vdo -->
+          <div class="vdocomp" v-if="item.vdo">
+            <div style="padding: 4px" v-for="(vdo, i) in item.thumb" :key="i">
+              <img
+                :src="vdo.thumb"
+                class="imgres"
+                @click="openlink(vdo.link)"
+              />
+              <!-- <iframe
               :src="vdo"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe> -->
+            </div>
+          </div>
+          <!-- photo -->
+          <div v-else>
+            <masonry
+              :cols="{ default: 4, 1000: 3, 700: 2, 400: 1 }"
+              :gutter="15"
+            >
+              <div
+                class="hoverscale"
+                @click="modalScope(prop + 1)"
+                v-for="prop in counter"
+                :key="prop"
+              >
+                <img :src="`imgGallary/${prop + 1}.jpg`" width="100%" />
+              </div>
+            </masonry>
           </div>
         </div>
-        <!-- photo -->
-        <div v-else>
-          <masonry :cols="{ default: 4, 1000: 3, 700: 2, 400: 1 }" :gutter="15">
-            <div
-              class="hoverscale"
-              @click="modalScope(prop + 1)"
-              v-for="prop in counter"
-              :key="prop"
-            >
-              <img :src="`imgGallary/${prop + 1}.jpg`" width="100%" />
-            </div>
-          </masonry>
-        </div>
       </div>
+      <v-navigation-drawer v-model="drawer" width="100%" fixed>
+        <list @links="closeNav" />
+      </v-navigation-drawer>
+      <v-dialog v-model="dialog" width="800">
+        <img :src="`imgGallary/${initImg}.jpg`" width="100%" />
+      </v-dialog>
+      <div><footbar /></div>
     </div>
-    <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @links="closeNav" />
-    </v-navigation-drawer>
-    <v-dialog v-model="dialog" width="800">
-      <img :src="`imgGallary/${initImg}.jpg`" width="100%" />
-    </v-dialog>
-    <div><footbar /></div>
   </div>
 </template>
 
