@@ -1,68 +1,86 @@
 <template>
-  <div
-    class="value_fate"
-    style="
-      background: url('bg_forest.jpg') 25% no-repeat fixed;
-      height: 100%;
-      background-size: cover;
-    "
-  >
-    <!-- <navbar ref="nav" @trick="openNav" /> -->
-    <div>
-      <div style="position: relative">
-        <div class="headerContact">ABOUT</div>
-      </div>
-      <div class="my-4 detailContact">
-        <div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We are a
-          full service production house covering from pre and pro production,
-          production, post production.
-        </div>
-        <div>
-          Our in-house creative team will assist you in consulting and
-          generating new ideas with the clients to ensure it reach objective
-          with limited budget.
-        </div>
-        <div>
-          Our team can provide the work/service on various scales from low-cost
-          budget viral online work to Television commercial adverting.
-        </div>
+  <div>
+    <div v-show="loadPage == false">
+      <div class="loadPage">
+        <img width="100px" height="100px" src="loading_1.gif" />
       </div>
     </div>
+    <div
+      v-show="loadPage == true"
+      class="value_fate"
+      style="
+        background: url('bg_forest.jpg') 25% no-repeat fixed;
+        height: 100%;
+        background-size: cover;
+      "
+    >
+      <!-- <navbar ref="nav" @trick="openNav" /> -->
+      <div>
+        <div style="position: relative">
+          <div class="headerContact">ABOUT</div>
+        </div>
+        <div class="my-4 detailContact">
+          <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We are
+            a full service production house covering from pre and pro
+            production, production, post production.
+          </div>
+          <div>
+            Our in-house creative team will assist you in consulting and
+            generating new ideas with the clients to ensure it reach objective
+            with limited budget.
+          </div>
+          <div>
+            Our team can provide the work/service on various scales from
+            low-cost budget viral online work to Television commercial
+            adverting.
+          </div>
+        </div>
+      </div>
 
-    <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
       <div
-        style="cursor: pointer"
-        class="vdoContent ma-1"
-        v-for="(n, x) in listCheck"
-        :key="x"
+        ref="vdoMove"
+        class="d-flex hidden-scroll"
+        style="overflow-x: scroll; white-space: nowrap"
       >
-        <img width="100%" :src="n.thumb" @click="openlink(n.link)" />
+        <div
+          style="cursor: pointer"
+          class="vdoContent ma-1"
+          v-for="(n, x) in listCheck"
+          :key="x"
+        >
+          <img
+            draggable="false"
+            width="100%"
+            :src="n.thumb"
+            @click="openlink(n.link)"
+          />
+        </div>
       </div>
-    </div>
 
-    <div class="my-4 detailContact">
-      <div class="th_content">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        เรารับผลิตสื่อครอบคลุมทุกรูปแบบพร้อมตอบสนองความต้องการตั้งแต่ขั้นตอนการเตรียมงาน
-        คิด ค้น ไอเดียสดใหม่ (Pre-Production),
-        ถ่ายทำด้วยอุปกรณ์และทีมงานผู้เชี่ยวชาญ (Production), และตัดต่อให้โดน ๆ
-        ปัง ๆ (Post-Production) ด้วยทีมงานมืออาชีพในทุกขั้นตอน
-        ที่พร้อมให้คำปรึกษาระดมความคิดเพื่อสร้าง "ชิ้นงาน"
-        ที่ตอบสนองได้ตรงตามความต้องการในงบประมาณที่ลูกค้าพึงพอใจมากที่สุด
+      <div class="my-4 detailContact">
+        <div class="th_content">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          เรารับผลิตสื่อครอบคลุมทุกรูปแบบพร้อมตอบสนองความต้องการตั้งแต่ขั้นตอนการเตรียมงาน
+          คิด ค้น ไอเดียสดใหม่ (Pre-Production),
+          ถ่ายทำด้วยอุปกรณ์และทีมงานผู้เชี่ยวชาญ (Production), และตัดต่อให้โดน ๆ
+          ปัง ๆ (Post-Production) ด้วยทีมงานมืออาชีพในทุกขั้นตอน
+          ที่พร้อมให้คำปรึกษาระดมความคิดเพื่อสร้าง "ชิ้นงาน"
+          ที่ตอบสนองได้ตรงตามความต้องการในงบประมาณที่ลูกค้าพึงพอใจมากที่สุด
+        </div>
       </div>
-    </div>
-    <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
-      <div v-for="n in counter" :key="n" class="vdoContent1 ma-1">
-        <img width="100%" :src="`imgGallary/${n}.jpg`" />
+      <div ref="imgMove" class="d-flex hidden-scroll" :style="cursorG">
+        <div v-for="n in counter" :key="n" class="vdoContent1 ma-1">
+          <img draggable="false" width="100%" :src="`imgGallary/${n}.jpg`" />
+        </div>
       </div>
+
+      <v-navigation-drawer v-model="drawer" width="100%" fixed>
+        <list @links="closeNav" />
+      </v-navigation-drawer>
+
+      <div style="background: #000"><footbar /></div>
     </div>
-
-    <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @links="closeNav" />
-    </v-navigation-drawer>
-
-    <div style="background: #000"><footbar /></div>
   </div>
 </template>
 
@@ -75,6 +93,7 @@ export default {
   components: { navbar, list, footbar },
   data() {
     return {
+      loadPage: false,
       drawer: false,
       group: null,
       navItem: ['Home', 'About', 'Services', 'Contact'],
@@ -96,6 +115,8 @@ export default {
       msgrules: [(value) => !!value || 'Required.'],
       counter: [],
       listCheck: [],
+      cursorG: 'cursor: grab;overflow-x: scroll; white-space: nowrap',
+      dragimg: false,
     }
   },
   watch: {
@@ -159,6 +180,14 @@ export default {
 
     op.length = 6
     this.counter = op
+
+    setTimeout(() => {
+      this.loadPage = true
+    }, 2500)
+
+    setTimeout(() => {
+      this.dragable()
+    }, 3000)
   },
   methods: {
     openNav(item) {
@@ -167,6 +196,41 @@ export default {
     closeNav() {
       this.drawer = false
       // this.$refs.nav.closeMenu(false)
+    },
+    dragable() {
+      let _this = this
+      let elImg = this.$refs.imgMove
+      let move = false
+      this.$refs.imgMove.addEventListener('mousedown', () => {
+        move = true
+        _this.dragimg = move
+        _this.cursorG =
+          'cursor: grabbing;overflow-x: scroll; white-space: nowrap'
+      })
+      this.$refs.imgMove.addEventListener('mousemove', function (event) {
+        if (move == true) {
+          elImg.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move = false
+        _this.dragimg = move
+        _this.cursorG = 'cursor: grab;overflow-x: scroll; white-space: nowrap'
+      })
+
+      let elvdo = this.$refs.vdoMove
+      let move1 = false
+      this.$refs.vdoMove.addEventListener('mousedown', () => {
+        move1 = true
+      })
+      this.$refs.vdoMove.addEventListener('mousemove', function (event) {
+        if (move1 == true) {
+          elvdo.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move1 = false
+      })
     },
     selectpage() {
       this.drawer = false
@@ -297,6 +361,10 @@ export default {
   &:hover {
     transform: scale(1.08);
   }
+}
+
+.hidden-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .th_content {

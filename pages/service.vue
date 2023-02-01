@@ -9,6 +9,7 @@
       <div class="pa-4" ref="id_backword">
         <div style="font-size: 48px">{{ item.title }}</div>
         <div style="font-size: 16px">{{ item.detail }}</div>
+        <!-- vdo -->
         <div class="vdocomp" v-if="item.vdo">
           <div style="padding: 4px" v-for="vdo in item.vdo" :key="vdo">
             <iframe
@@ -19,6 +20,7 @@
             ></iframe>
           </div>
         </div>
+        <!-- photo -->
         <div v-else>
           <masonry :cols="{ default: 4, 1000: 3, 700: 2, 400: 1 }" :gutter="15">
             <div
@@ -52,6 +54,7 @@ export default {
   components: { navbar, list, footbar },
   data() {
     return {
+      loadPage: false,
       dialog: false,
       drawer: false,
       group: null,
@@ -139,6 +142,7 @@ export default {
     },
   },
   mounted() {
+    this.renderContent()
     let num = []
     for (let i = 0; i <= 53; i++) {
       num.push(i)
@@ -148,6 +152,10 @@ export default {
     this.counter.length = 16
 
     if (this.goto_title) this.gotoID(this.goto_title)
+
+    setTimeout(() => {
+      this.loadPage = true
+    }, 2500)
   },
   methods: {
     openNav(item) {
@@ -172,6 +180,11 @@ export default {
     modalScope(item) {
       this.initImg = item
       this.dialog = true
+    },
+    renderContent() {
+      // 0 - online content
+      this.conetent_service[0].thumb = this.$store.state.online
+      console.log('this.conetent_service', this.conetent_service[0].thumb)
     },
   },
 }
