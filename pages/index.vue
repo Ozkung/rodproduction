@@ -89,7 +89,7 @@
         />
       </div>
     </div>
-    <div ref="imgMove" class="d-flex imglisthome">
+    <div ref="imgMove" class="d-flex imglisthome" :style="cursorG">
       <div v-for="n in loop2" :key="n" class="vdoContent1 ma-1">
         <img draggable="false" width="100%" :src="`imgGallary/${n}.jpg`" />
       </div>
@@ -182,6 +182,7 @@ export default {
       hide: false,
       windowWidth: window.innerWidth,
       dragimg: true,
+      cursorG: 'cursor: grab',
     }
   },
   watch: {
@@ -258,10 +259,13 @@ export default {
   },
   methods: {
     dragable() {
+      let _this = this
       let elImg = this.$refs.imgMove
       let move = false
       this.$refs.imgMove.addEventListener('mousedown', () => {
         move = true
+        _this.dragimg = move
+        _this.cursorG = 'cursor: grabbing'
       })
       this.$refs.imgMove.addEventListener('mousemove', function (event) {
         if (move == true) {
@@ -270,6 +274,8 @@ export default {
       })
       document.addEventListener('mouseup', () => {
         move = false
+        _this.dragimg = move
+        _this.cursorG = 'cursor: grab'
       })
 
       let elvdo = this.$refs.vdoMove
