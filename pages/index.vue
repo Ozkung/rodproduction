@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="bgvdo">
-          <video class="vdo" muted autoplay>
+          <video class="vdo" muted autoplay loop>
             <source src="Rodreel2021-1.mp4" type="video/mp4" />
           </video>
         </div>
