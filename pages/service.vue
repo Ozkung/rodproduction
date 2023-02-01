@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div class="value_fate">
+    <div v-show="loadPage == false">
+      <div class="loadPage">
+        <img width="100px" height="100px" src="loading_1.gif" />
+      </div>
+    </div>
+    <div v-show="loadPage == true" class="value_fate">
       <div class="d-flex justify-center" style="font-size: 3.4rem">
         SERVICES
       </div>
@@ -13,19 +18,14 @@
           <div style="font-size: 36px">{{ item.title }}</div>
           <div style="font-size: 16px">{{ item.detail }}</div>
           <!-- vdo -->
-          <div class="vdocomp" v-if="item.vdo">
+          <div class="vdocomp" :ref="`imgser${index}`" v-if="item.vdo">
             <div style="padding: 4px" v-for="(vdo, i) in item.thumb" :key="i">
               <img
+                draggable="false"
                 :src="vdo.thumb"
                 class="imgres"
                 @click="openlink(vdo.link)"
               />
-              <!-- <iframe
-              :src="vdo"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe> -->
             </div>
           </div>
           <!-- photo -->
@@ -139,6 +139,11 @@ export default {
       ],
       counter: [],
       initImg: '',
+      dragimg0: false,
+      dragimg1: false,
+      dragimg2: false,
+      dragimg3: false,
+      dragimg4: false,
     }
   },
   computed: {
@@ -168,6 +173,16 @@ export default {
     setTimeout(() => {
       this.loadPage = true
     }, 2500)
+
+    setTimeout(() => {
+      this.dragable()
+
+      this.$nextTick(() => {
+        document.addEventListener('contextmenu', (event) =>
+          event.preventDefault()
+        )
+      })
+    }, 3000)
   },
   methods: {
     openNav(item) {
@@ -176,6 +191,93 @@ export default {
     closeNav() {
       this.drawer = false
       // this.$refs.nav.closeMenu(false)
+    },
+    dragable() {
+      let _this = this
+      let elImg = this.$refs.imgser0[0]
+
+      let move = false
+      this.$refs.imgser0[0].addEventListener('mousedown', () => {
+        move = true
+        _this.dragimg0 = move
+      })
+      this.$refs.imgser0[0].addEventListener('mousemove', function (event) {
+        if (move == true) {
+          elImg.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move = false
+        _this.dragimg0 = move
+      })
+
+      let elImg1 = this.$refs.imgser1[0]
+
+      let move1 = false
+      this.$refs.imgser1[0].addEventListener('mousedown', () => {
+        move1 = true
+        _this.dragimg1 = move1
+      })
+      this.$refs.imgser1[0].addEventListener('mousemove', function (event) {
+        if (move1 == true) {
+          elImg1.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move1 = false
+        _this.dragimg1 = move1
+      })
+
+      let elImg2 = this.$refs.imgser2[0]
+
+      let move2 = false
+      this.$refs.imgser2[0].addEventListener('mousedown', () => {
+        move2 = true
+        _this.dragimg2 = move2
+      })
+      this.$refs.imgser2[0].addEventListener('mousemove', function (event) {
+        if (move2 == true) {
+          elImg2.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move2 = false
+        _this.dragimg2 = move2
+      })
+
+      let elImg3 = this.$refs.imgser3[0]
+
+      let move3 = false
+      this.$refs.imgser3[0].addEventListener('mousedown', () => {
+        move3 = true
+        _this.dragimg3 = move3
+      })
+      this.$refs.imgser3[0].addEventListener('mousemove', function (event) {
+        if (move3 == true) {
+          elImg3.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move3 = false
+        _this.dragimg3 = move3
+      })
+
+      let elImg4 = this.$refs.imgser4[0]
+
+      let move4 = false
+      this.$refs.imgser4[0].addEventListener('mousedown', () => {
+        move4 = true
+        _this.dragimg4 = move4
+      })
+      this.$refs.imgser4[0].addEventListener('mousemove', function (event) {
+        if (move4 == true) {
+          elImg4.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move4 = false
+        _this.dragimg4 = move4
+      })
     },
     selectpage() {
       this.drawer = false
@@ -278,6 +380,9 @@ export default {
   overflow-x: scroll;
   display: flex;
   white-space: nowrap;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .hoverscale {
