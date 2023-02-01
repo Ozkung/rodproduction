@@ -1,5 +1,10 @@
 <template>
-  <div>
+  <div v-if="loadPage == false">
+    <div class="loadPage">
+      <img width="100px" height="100px" src="loading_1.gif" />
+    </div>
+  </div>
+  <div v-else>
     <div class="app_main">
       <div class="vdo_text_content" v-if="windowWidth > 800">
         <div class="topic">Media team base in bangkok</div>
@@ -112,6 +117,7 @@ export default {
   components: { navbar, list, footbar },
   data() {
     return {
+      loadPage: false,
       drawer: false,
       group: null,
       colors: [
@@ -246,12 +252,18 @@ export default {
     op.length = 6
     this.loop2 = op
 
-    this.dragable()
+    setTimeout(() => {
+      this.loadPage = true
+    }, 2500)
 
-    window.addEventListener('scroll', this.onScroll)
-    this.$nextTick(() => {
-      window.addEventListener('resize', this.onResize)
-    })
+    setTimeout(() => {
+      this.dragable()
+
+      window.addEventListener('scroll', this.onScroll)
+      this.$nextTick(() => {
+        window.addEventListener('resize', this.onResize)
+      })
+    }, 3000)
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScroll)

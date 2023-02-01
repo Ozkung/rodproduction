@@ -39,4 +39,12 @@ export default {
 .page-leave-to {
   opacity: 0;
 }
+.loadPage {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>

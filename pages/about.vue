@@ -124,6 +124,8 @@ export default {
     },
   },
   mounted() {
+    this.$parent.$emit('loadAttr')
+
     this.listCheck = this.$_.cloneDeep(this.newlist)
     this.listCheck = this.$_.shuffle(this.listCheck)
     this.listCheck.length = 4
