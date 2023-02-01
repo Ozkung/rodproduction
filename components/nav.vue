@@ -106,7 +106,7 @@ export default {
   text-shadow: 2px 2px 5px #000;
 }
 .logoTitle {
-  width: 270px;
+  width: 220px;
   height: 100%;
   display: flex;
   align-items: center;
