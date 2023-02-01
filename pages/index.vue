@@ -219,6 +219,7 @@ export default {
     },
   },
   mounted() {
+    document.addEventListener('contextmenu', (event) => event.preventDefault())
     let open = this.$_.cloneDeep(this.newlist)
     let shuf = this.$_.shuffle(open)
     shuf.length = 4
@@ -350,6 +351,7 @@ export default {
 
 .v-application {
   font-family: 'Teko', 'IBM Plex Sans Thai' !important;
+  user-select: none;
 }
 .v-application--wrap {
   background: black;
