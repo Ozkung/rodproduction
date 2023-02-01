@@ -74,19 +74,24 @@
         />
       </div>
     </div>
-    <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
+    <div ref="vdoMove" class="d-flex vdolisthome">
       <div
         style="cursor: pointer"
         class="vdoContent ma-1"
         v-for="(n, x) in loop1"
         :key="x"
       >
-        <img width="100%" :src="n.thumb" @click="openlink(n.link)" />
+        <img
+          draggable="false"
+          width="100%"
+          :src="n.thumb"
+          @click="openlink(n.link)"
+        />
       </div>
     </div>
-    <div class="d-flex" style="overflow-x: scroll; white-space: nowrap">
+    <div ref="imgMove" class="d-flex imglisthome">
       <div v-for="n in loop2" :key="n" class="vdoContent1 ma-1">
-        <img width="100%" :src="`imgGallary/${n}.jpg`" />
+        <img draggable="false" width="100%" :src="`imgGallary/${n}.jpg`" />
       </div>
     </div>
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
@@ -176,6 +181,7 @@ export default {
       listCheck: [],
       hide: false,
       windowWidth: window.innerWidth,
+      dragimg: true,
     }
   },
   watch: {
@@ -235,10 +241,12 @@ export default {
     num = num.filter((i) => i !== 52)
     let op = this.$_.cloneDeep(num)
     op = this._.shuffle(op)
-    // console.log('op', op)
 
     op.length = 6
     this.loop2 = op
+
+    this.dragable()
+
     window.addEventListener('scroll', this.onScroll)
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
@@ -249,6 +257,35 @@ export default {
     window.removeEventListener('resize', this.onResize)
   },
   methods: {
+    dragable() {
+      let elImg = this.$refs.imgMove
+      let move = false
+      this.$refs.imgMove.addEventListener('mousedown', () => {
+        move = true
+      })
+      this.$refs.imgMove.addEventListener('mousemove', function (event) {
+        if (move == true) {
+          elImg.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move = false
+      })
+
+      let elvdo = this.$refs.vdoMove
+      let move1 = false
+      this.$refs.vdoMove.addEventListener('mousedown', () => {
+        move1 = true
+      })
+      this.$refs.vdoMove.addEventListener('mousemove', function (event) {
+        if (move1 == true) {
+          elvdo.scrollLeft -= event.movementX
+        }
+      })
+      document.addEventListener('mouseup', () => {
+        move1 = false
+      })
+    },
     onScroll(e) {
       this.windowTop = window.top.scrollY
       if (this.windowTop >= 690) this.hide = false
@@ -290,6 +327,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap');
+
 .v-application {
   font-family: 'Teko', 'IBM Plex Sans Thai' !important;
 }
@@ -532,7 +570,25 @@ export default {
     transform: scale(1.08);
   }
 }
+.vdolisthome {
+  overflow-x: scroll;
+  white-space: nowrap;
+  align-items: center;
+  height: 340px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
+.imglisthome {
+  overflow-x: auto;
+  white-space: nowrap;
+  align-items: center;
+  height: 260px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 @media only screen and (max-width: 400px) {
   .bgvdo {
     position: relative;
