@@ -1,109 +1,111 @@
 <template>
-  <div v-if="loadPage == false">
-    <div class="loadPage">
-      <img width="100px" height="100px" src="loading_1.gif" />
+  <div>
+    <div v-show="loadPage == false">
+      <div class="loadPage">
+        <img width="100px" height="100px" src="loading_1.gif" />
+      </div>
     </div>
-  </div>
-  <div v-else>
-    <div class="app_main">
-      <div class="vdo_text_content" v-if="windowWidth > 800">
-        <div class="topic">Media team base in bangkok</div>
-        <div class="content">
-          We provide a full production services for commercials, short films,
-          video online, documentaries, music videos and branded content.
+    <div v-show="loadPage == true">
+      <div class="app_main">
+        <div class="vdo_text_content" v-if="windowWidth > 800">
+          <div class="topic">Media team base in bangkok</div>
+          <div class="content">
+            We provide a full production services for commercials, short films,
+            video online, documentaries, music videos and branded content.
+          </div>
+          <div class="btn">
+            <v-btn
+              @click="rootLink('/contact/')"
+              class="btn_contact"
+              depressed
+              color="error"
+              >CONTACT</v-btn
+            >
+          </div>
         </div>
-        <div class="btn">
-          <v-btn
-            @click="rootLink('/contact/')"
-            class="btn_contact"
-            depressed
-            color="error"
-            >CONTACT</v-btn
-          >
+        <div class="bgvdo">
+          <video class="vdo" muted autoplay>
+            <source src="Rodreel2021-1.mp4" type="video/mp4" />
+          </video>
         </div>
-      </div>
-      <div class="bgvdo">
-        <video class="vdo" muted autoplay>
-          <source src="Rodreel2021-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <!-- <div v-if="windowWidth < 400" class="topic_ab">
+        <!-- <div v-if="windowWidth < 400" class="topic_ab">
         Media team base in bangkok
       </div> -->
-    </div>
-    <!-- word -->
-    <div class="my_advice my-5">
-      <div class="res_mobile" v-if="windowWidth < 800">
-        <div class="topic">Media team base in bangkok</div>
-        <div class="content">We provide a full production services for</div>
+      </div>
+      <!-- word -->
+      <div class="my_advice my-5">
+        <div class="res_mobile" v-if="windowWidth < 800">
+          <div class="topic">Media team base in bangkok</div>
+          <div class="content">We provide a full production services for</div>
+          <div class="content">
+            commercials, short films, video online, documentaries, music videos
+            and branded content.
+          </div>
+          <div class="btn">
+            <v-btn
+              @click="rootLink('/contact/')"
+              class="btn_contact"
+              depressed
+              color="error"
+              >CONTACT</v-btn
+            >
+          </div>
+        </div>
+        <div style="font-weight: 600; font-size: 3.4rem">R.O.D Production</div>
+        <br />
         <div class="content">
-          commercials, short films, video online, documentaries, music videos
-          and branded content.
-        </div>
-        <div class="btn">
-          <v-btn
-            @click="rootLink('/contact/')"
-            class="btn_contact"
-            depressed
-            color="error"
-            >CONTACT</v-btn
-          >
+          Our in-house creative team will assist you in consulting and
+          generating new ideas with the clients to ensure it reach objective
+          with limited budget.
         </div>
       </div>
-      <div style="font-weight: 600; font-size: 3.4rem">R.O.D Production</div>
-      <br />
-      <div class="content">
-        Our in-house creative team will assist you in consulting and generating
-        new ideas with the clients to ensure it reach objective with limited
-        budget.
-      </div>
-    </div>
-    <!-- sercvice -->
-    <div
-      style="
-        background: url('RodReel2021.mp4_snapshot_01.17.582.jpg') no-repeat;
-        background-attachment: fixed;
-        padding-bottom: 20px;
-      "
-    >
-      <div class="d-flex justify-center align-center">
-        <div style="color: #fff; font-size: 3.4rem">Service</div>
-      </div>
-      <div class="grid_services">
-        <img
-          v-for="(itemed, index) in slides"
-          :key="index"
-          :src="itemed"
-          width="32%"
-          @click="rootLink('/service/', index)"
-        />
-      </div>
-    </div>
-    <div ref="vdoMove" class="d-flex vdolisthome">
+      <!-- sercvice -->
       <div
-        style="cursor: pointer"
-        class="vdoContent ma-1"
-        v-for="(n, x) in loop1"
-        :key="x"
+        style="
+          background: url('RodReel2021.mp4_snapshot_01.17.582.jpg') no-repeat;
+          background-attachment: fixed;
+          padding-bottom: 20px;
+        "
       >
-        <img
-          draggable="false"
-          width="100%"
-          :src="n.thumb"
-          @click="openlink(n.link)"
-        />
+        <div class="d-flex justify-center align-center">
+          <div style="color: #fff; font-size: 3.4rem">Service</div>
+        </div>
+        <div class="grid_services">
+          <img
+            v-for="(itemed, index) in slides"
+            :key="index"
+            :src="itemed"
+            width="32%"
+            @click="rootLink('/service/', index)"
+          />
+        </div>
       </div>
-    </div>
-    <div ref="imgMove" class="d-flex imglisthome" :style="cursorG">
-      <div v-for="n in loop2" :key="n" class="vdoContent1 ma-1">
-        <img draggable="false" width="100%" :src="`imgGallary/${n}.jpg`" />
+      <div ref="vdoMove" class="d-flex vdolisthome">
+        <div
+          style="cursor: pointer"
+          class="vdoContent ma-1"
+          v-for="(n, x) in loop1"
+          :key="x"
+        >
+          <img
+            draggable="false"
+            width="100%"
+            :src="n.thumb"
+            @click="openlink(n.link)"
+          />
+        </div>
       </div>
-    </div>
-    <v-navigation-drawer v-model="drawer" width="100%" fixed>
-      <list @links="closeNav" />
-    </v-navigation-drawer>
-    <div>
-      <footbar />
+      <div ref="imgMove" class="d-flex imglisthome" :style="cursorG">
+        <div v-for="n in loop2" :key="n" class="vdoContent1 ma-1">
+          <img draggable="false" width="100%" :src="`imgGallary/${n}.jpg`" />
+        </div>
+      </div>
+      <v-navigation-drawer v-model="drawer" width="100%" fixed>
+        <list @links="closeNav" />
+      </v-navigation-drawer>
+      <div>
+        <footbar />
+      </div>
     </div>
   </div>
 </template>
