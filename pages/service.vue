@@ -11,13 +11,14 @@
         <div style="font-size: 16px">{{ item.detail }}</div>
         <!-- vdo -->
         <div class="vdocomp" v-if="item.vdo">
-          <div style="padding: 4px" v-for="vdo in item.vdo" :key="vdo">
-            <iframe
+          <div style="padding: 4px" v-for="vdo in item.thumb" :key="vdo">
+            <img :src="vdo.thumb" class="imgres" @click="openlink(vdo.link)" />
+            <!-- <iframe
               :src="vdo"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
-            ></iframe>
+            ></iframe> -->
           </div>
         </div>
         <!-- photo -->
@@ -183,8 +184,20 @@ export default {
     },
     renderContent() {
       // 0 - online content
-      this.conetent_service[0].thumb = this.$store.state.online
-      console.log('this.conetent_service', this.conetent_service[0].thumb)
+      this.conetent_service[0].thumb = this._.shuffle(this.$store.state.online)
+      // 1 - presentation
+      this.conetent_service[1].thumb = this._.shuffle(this.$store.state.present)
+      // 2 - document
+      this.conetent_service[2].thumb = this._.shuffle(this.$store.state.theory)
+      // 3 - info 3D
+      this.conetent_service[3].thumb = this._.shuffle(this.$store.state.info)
+      // 4 - event summary
+      this.conetent_service[4].thumb = this._.shuffle(
+        this.$store.state.eventSum
+      )
+    },
+    openlink(prop) {
+      window.open(prop, '_blank')
     },
   },
 }
@@ -251,8 +264,9 @@ export default {
   height: calc(100vh - 294.36px);
 }
 .vdocomp {
+  overflow-x: scroll;
   display: flex;
-  flex-wrap: wrap;
+  white-space: nowrap;
 }
 
 .hoverscale {
@@ -261,11 +275,10 @@ export default {
     transform: scale(1.04);
   }
 }
-@media only screen and (max-width: 1280px) {
-  .vdocomp {
-    white-space: nowrap;
-    overflow-x: scroll;
-    flex-wrap: nowrap;
-  }
+
+.imgres {
+  min-width: 300px;
+  width: 100%;
+  max-width: 400px;
 }
 </style>
