@@ -562,8 +562,10 @@ export default {
     left: 0;
     bottom: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    height: auto !important;
+    width: auto !important;
   }
 }
 
@@ -611,7 +613,7 @@ export default {
     display: none;
   }
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 700px) {
   .bgvdo {
     position: relative;
     overflow: hidden;
@@ -623,8 +625,10 @@ export default {
       left: -250px;
       bottom: 0;
       right: 0;
-      width: unset;
-      height: 500px;
+      min-height: 500px;
+      min-width: 700px;
+      height: 500px !important;
+      width: 700px !important;
     }
   }
 }
