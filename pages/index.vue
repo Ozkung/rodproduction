@@ -279,10 +279,10 @@ export default {
       window.addEventListener('scroll', this.onScroll)
       this.$nextTick(() => {
         window.addEventListener('resize', this.onResize)
+        document.addEventListener('contextmenu', (event) =>
+          event.preventDefault()
+        )
         document.getElementById('convdo').play()
-        // document.addEventListener('contextmenu', (event) =>
-        //   event.preventDefault()
-        // )
       })
     }, 3000)
   },
