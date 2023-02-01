@@ -25,9 +25,10 @@
             v-for="(item1, index1) in emailSender0"
             :key="index1"
           >
-            <div class="subtitle_contact">{{ item1.title }}</div>
+            <div class="subtitle_contact" v-html="item1.title"></div>
             <v-text-field
               solo
+              :rules="item1.rule"
               v-model="item1.value"
               :placeholder="item1.placeholder"
             ></v-text-field>
@@ -40,7 +41,7 @@
             v-for="(item2, index2) in emailSender1"
             :key="index2"
           >
-            <div class="subtitle_contact">{{ item2.title }}</div>
+            <div class="subtitle_contact" v-html="item2.title"></div>
             <v-text-field
               solo
               v-model="item2.value"
@@ -51,7 +52,7 @@
         <!-- emailSender2 -->
         <div class="d-flex">
           <div class="filedBox">
-            <div class="subtitle_contact">{{ emailSender2[0].title }}</div>
+            <div class="subtitle_contact" v-html="emailSender2[0].title"></div>
             <v-select
               solo
               :items="serviceList"
@@ -60,9 +61,10 @@
             ></v-select>
           </div>
           <div class="filedBox">
-            <div class="subtitle_contact">{{ emailSender2[1].title }}</div>
+            <div class="subtitle_contact" v-html="emailSender2[1].title"></div>
             <v-text-field
               solo
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
               v-model="emailSender2[1].value"
               :placeholder="emailSender2[1].placeholder"
             ></v-text-field>
@@ -71,7 +73,7 @@
 
         <div class="d-flex">
           <div class="filedBox">
-            <div class="subtitle_contact">{{ detail_convert.title }}</div>
+            <div class="subtitle_contact" v-html="detail_convert.title"></div>
             <v-textarea solo v-model="detail_convert.value"> </v-textarea>
           </div>
         </div>
@@ -102,18 +104,42 @@ export default {
     return {
       drawer: false,
       emailSender0: [
-        { title: 'NAME', value: '', placeholder: 'Your Name' },
-        { title: 'COMPANY', value: '', placeholder: 'Your Company' },
+        {
+          title: 'NAME <span style="color: red">*</span>',
+          value: '',
+          placeholder: 'Your Name',
+        },
+        { title: 'COMPANY', value: '', placeholder: 'Your Company', rule: [] },
       ],
       emailSender1: [
-        { title: 'EMAIL', value: '', placeholder: 'You Email' },
-        { title: 'PHONE NUMBER', value: '', placeholder: 'Your Phone Number' },
+        {
+          title: 'EMAIL <span style="color: red">*</span>',
+          value: '',
+          placeholder: 'You Email',
+        },
+        {
+          title: 'PHONE NUMBER <span style="color: red">*</span>',
+          value: '',
+          placeholder: 'Your Phone Number',
+        },
       ],
       emailSender2: [
-        { title: 'SERVICE REQUEST', value: '', placeholder: 'Select One' },
-        { title: 'BUDGET', value: '', placeholder: 'ex. 10,000 THB' },
+        {
+          title: 'SERVICE REQUEST <span style="color: red">*</span>',
+          value: '',
+          placeholder: 'Select One',
+        },
+        {
+          title: 'BUDGET',
+          value: '',
+          placeholder: 'ex. 10000',
+        },
       ],
-      detail_convert: { title: 'DETAIL', value: '', placeholder: 'Messsage' },
+      detail_convert: {
+        title: 'DETAIL <span style="color: red">*</span>',
+        value: '',
+        placeholder: 'Messsage',
+      },
       group: null,
       navItem: ['Home', 'Showreel', 'Services', 'Contact'],
       serviceList: [
@@ -123,32 +149,56 @@ export default {
         'Infographic / 3D',
         'Event Summary',
         'Still Photography',
+        'Other',
       ],
       emailTag: 'rod.mpjt@gmail.com',
       tel: '087-102-9600',
     }
   },
+
   methods: {
     openNav(item) {
       this.drawer = item
     },
     closeNav() {
       this.drawer = false
-      // this.$refs.nav.closeMenu(false)
     },
     async sendEmail() {
       let name = '\nName: ' + this.emailSender0[0].value
       let tels = '\nTel: ' + this.emailSender1[1].value
       let detail = this.detail_convert.value
       let company = '\nCompany: ' + this.emailSender0[1].value
-      let budget = '\nBudget: ' + this.emailSender2[1].value
+      let budget =
+        'Budget: ' + this.emailSender2[1].value
+          ? parseInt(this.emailSender2[1].value).toLocaleString()
+          : 'Unknow'
+
+      if (this.emailSender0[0].value == '')
+        return alert('Please complete the form above.')
+      if (this.emailSender1[0].value == '')
+        return alert('Please complete the form above.')
+      if (this.emailSender1[1].value == '')
+        return alert('Please complete the form above.')
+      if (this.emailSender2[0].value == '')
+        return alert('Please complete the form above.')
+      if (detail == '') return alert('Please complete the form above.')
       let obj = {
         from: this.emailSender1[0].value,
-        subject: this.emailSender2[0].value,
-        text: detail + name + company + budget + tels,
+        subject:
+          this.emailSender2[0].value +
+          ' ' +
+          '[' +
+          name +
+          ' ' +
+          ':' +
+          ' ' +
+          budget +
+          'THB' +
+          ']',
+        text: detail + name + company + '\n' + budget + tels,
       }
-      await this.$mail.send(obj)
-      console.log('object : contact2')
+      console.log('mail object', obj)
+      // await this.$mail.send(obj)
     },
   },
 }
