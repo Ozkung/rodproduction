@@ -52,9 +52,8 @@ export default {
         message: {
           to: process.env.EMAIL_USER,
           cc: [
-            'Csuwatikul@gmail.com',
             'peot254@gmail.com',
-            'sanya.roknight@gmail.com',
+            'pongpop.suw@gmail.com'
           ],
         },
         smtp: {

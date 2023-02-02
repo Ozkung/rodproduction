@@ -89,6 +89,14 @@
     <v-navigation-drawer v-model="drawer" width="100%" fixed>
       <list @links="closeNav" />
     </v-navigation-drawer>
+    <v-dialog max-width="340" v-model="validateFrom">
+      <v-card class="container">
+        <div style="font-size: 24px">Please complete the form above.</div>
+        <div class="d-flex justify-end">
+          <v-btn color="error" small>OK</v-btn>
+        </div>
+      </v-card>
+    </v-dialog>
     <div class="footerProduction"><footbar /></div>
   </div>
 </template>
@@ -153,6 +161,7 @@ export default {
       ],
       emailTag: 'rod.mpjt@gmail.com',
       tel: '087-102-9600',
+      validateFrom: false,
     }
   },
 
@@ -164,6 +173,7 @@ export default {
       this.drawer = false
     },
     async sendEmail() {
+      this.validateFrom = false
       let name = '\nName: ' + this.emailSender0[0].value
       let tels = '\nTel: ' + this.emailSender1[1].value
       let detail = this.detail_convert.value
@@ -173,15 +183,11 @@ export default {
           ? parseInt(this.emailSender2[1].value).toLocaleString()
           : 'Unknow'
 
-      if (this.emailSender0[0].value == '')
-        return alert('Please complete the form above.')
-      if (this.emailSender1[0].value == '')
-        return alert('Please complete the form above.')
-      if (this.emailSender1[1].value == '')
-        return alert('Please complete the form above.')
-      if (this.emailSender2[0].value == '')
-        return alert('Please complete the form above.')
-      if (detail == '') return alert('Please complete the form above.')
+      if (this.emailSender0[0].value == '') return (this.validateFrom = true)
+      if (this.emailSender1[0].value == '') return (this.validateFrom = true)
+      if (this.emailSender1[1].value == '') return (this.validateFrom = true)
+      if (this.emailSender2[0].value == '') return (this.validateFrom = true)
+      if (detail == '') return (this.validateFrom = true)
       let obj = {
         from: this.emailSender1[0].value,
         subject:
@@ -197,8 +203,9 @@ export default {
           ']',
         text: detail + name + company + '\n' + budget + tels,
       }
-      console.log('mail object', obj)
-      // await this.$mail.send(obj)
+      // console.log('mail object', obj)
+      await this.$mail.send(obj)
+      this.validateFrom = false
     },
   },
 }
