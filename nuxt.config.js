@@ -50,18 +50,19 @@ export default {
       'nuxt-mail',
       {
         message: {
-          to: process.env.EMAIL_USER,
+          to: 'rod.mpjt@gmail.com',
           cc: [
+            'Csuwatikul@gmail.com',
             'peot254@gmail.com',
-            'pongpop.suw@gmail.com'
+            'sanya.roknight@gmail.com',
           ],
         },
         smtp: {
           host: 'smtp.gmail.com',
           port: 25,
           auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
+            user: 'rod.mpjt@gmail.com',
+            pass: 'gcfrwbkkuprgcidu',
           },
         },
       },

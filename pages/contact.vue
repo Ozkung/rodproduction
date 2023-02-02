@@ -77,11 +77,14 @@
             <v-textarea solo v-model="detail_convert.value"> </v-textarea>
           </div>
         </div>
-        <div class="d-flex">
-          <div class="filedBox">
+        <div class="d-flex justify-start">
+          <div class="filedBox d-flex align-center">
             <v-btn color="error" @click="sendEmail()" large>
               <div style="font-size: 18px">SUBMIT</div>
             </v-btn>
+            <div style="color: #fff000; padding-left: 16px">
+              {{ sendingmsg }}
+            </div>
           </div>
         </div>
       </div>
@@ -93,7 +96,7 @@
       <v-card class="container">
         <div style="font-size: 24px">Please complete the form above.</div>
         <div class="d-flex justify-end">
-          <v-btn color="error" small>OK</v-btn>
+          <v-btn color="error" small @click="validateFrom = false">OK</v-btn>
         </div>
       </v-card>
     </v-dialog>
@@ -162,6 +165,7 @@ export default {
       emailTag: 'rod.mpjt@gmail.com',
       tel: '087-102-9600',
       validateFrom: false,
+      sendingmsg: '',
     }
   },
 
@@ -180,7 +184,7 @@ export default {
       let company = '\nCompany: ' + this.emailSender0[1].value
       let budget =
         'Budget: ' + this.emailSender2[1].value
-          ? parseInt(this.emailSender2[1].value).toLocaleString()
+          ? this.emailSender2[1].value
           : 'Unknow'
 
       if (this.emailSender0[0].value == '') return (this.validateFrom = true)
@@ -201,11 +205,29 @@ export default {
           budget +
           'THB' +
           ']',
-        text: detail + name + company + '\n' + budget + tels,
+        text:
+          'Service: ' +
+          this.emailSender2[0].value +
+          '\n\nDetail: ' +
+          detail +
+          '\n' +
+          name +
+          '\n' +
+          '\nEmail: ' +
+          this.emailSender1[0].value +
+          '\n' +
+          company +
+          '\n' +
+          '\nBudget: ' +
+          budget +
+          'THB' +
+          '\n' +
+          tels,
       }
-      // console.log('mail object', obj)
+
       await this.$mail.send(obj)
       this.validateFrom = false
+      this.sendingmsg = 'Send complete!!!'
     },
   },
 }
