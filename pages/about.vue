@@ -75,12 +75,11 @@
         </div>
       </div>
 
-      <v-navigation-drawer v-model="drawer" width="100%" fixed>
-        <list @links="closeNav" />
-      </v-navigation-drawer>
-
       <div style="background: #000"><footbar /></div>
     </div>
+    <v-navigation-drawer v-model="drawer" width="100%" fixed>
+      <list @links="closeNav" />
+    </v-navigation-drawer>
   </div>
 </template>
 

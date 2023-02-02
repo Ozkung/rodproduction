@@ -115,13 +115,14 @@
           <img draggable="false" width="100%" :src="`imgGallary/${n}.jpg`" />
         </div>
       </div>
-      <v-navigation-drawer v-model="drawer" width="100%" fixed>
-        <list @links="closeNav" />
-      </v-navigation-drawer>
+
       <div>
         <footbar />
       </div>
     </div>
+    <v-navigation-drawer v-model="drawer" width="100%" fixed>
+      <list @links="closeNav" />
+    </v-navigation-drawer>
   </div>
 </template>
 

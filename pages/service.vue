@@ -46,14 +46,15 @@
           </div>
         </div>
       </div>
-      <v-navigation-drawer v-model="drawer" width="100%" fixed>
-        <list @links="closeNav" />
-      </v-navigation-drawer>
+
       <v-dialog v-model="dialog" width="800">
         <img :src="`imgGallary/${initImg}.jpg`" width="100%" />
       </v-dialog>
       <div><footbar /></div>
     </div>
+    <v-navigation-drawer v-model="drawer" width="100%" fixed>
+      <list @links="closeNav" />
+    </v-navigation-drawer>
   </div>
 </template>
 
