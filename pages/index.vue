@@ -27,7 +27,7 @@
           
         </div> -->
         <div class="bgvdo">
-          <video id="convdo" width="100%" class="vdo" muted loop>
+          <video id="convdo" width="100%" class="vdo" muted loop playsinline>
             <source src="Rodreel2021-1.mp4" type="video/mp4" />
           </video>
         </div>
@@ -277,12 +277,13 @@ export default {
       this.dragable()
 
       window.addEventListener('scroll', this.onScroll)
-      this.$nextTick(() => {
+      this.$nextTick(async () => {
         window.addEventListener('resize', this.onResize)
         document.addEventListener('contextmenu', (event) =>
           event.preventDefault()
         )
         document.getElementById('convdo').play()
+        // document.getElementById('convdo').setAttribute('autoplay', 'autoplay')
       })
     }, 3000)
   },
@@ -515,7 +516,7 @@ export default {
   img {
     padding: 8px;
     cursor: pointer;
-    transition: transform 0.2s; /* Animation */
+    transition: transform 0.15s ease-in; /* Animation */
     &:hover {
       transform: scale(1.08);
     }
@@ -598,6 +599,7 @@ export default {
 .vdoContent {
   min-width: 370px;
   width: 100%;
+  transition: transform 0.15s ease-in; /* Animation */
   &:hover {
     transform: scale(1.08);
   }
@@ -605,6 +607,7 @@ export default {
 .vdoContent1 {
   min-width: 300px;
   width: 100%;
+  transition: transform 0.15s ease-in; /* Animation */
   &:hover {
     transform: scale(1.08);
   }
@@ -613,7 +616,7 @@ export default {
   overflow-x: scroll;
   white-space: nowrap;
   align-items: center;
-  height: 340px;
+  margin-top: 14px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -623,7 +626,6 @@ export default {
   overflow-x: auto;
   white-space: nowrap;
   align-items: center;
-  height: 260px;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -633,16 +635,16 @@ export default {
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding-top: 500px;
+    padding-top: 100%;
     .vdo {
       position: absolute;
       top: 0;
       left: -250px;
       bottom: 0;
       right: 0;
-      min-height: 500px;
+      min-height: 100px;
       min-width: 700px;
-      height: 500px !important;
+      height: 370px !important;
       width: 700px !important;
     }
   }
