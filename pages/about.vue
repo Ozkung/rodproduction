@@ -186,6 +186,11 @@ export default {
 
     setTimeout(() => {
       this.dragable()
+      this.$nextTick(async () => {
+        document.addEventListener('contextmenu', (event) =>
+          event.preventDefault()
+        )
+      })
     }, 3000)
   },
   methods: {
