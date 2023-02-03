@@ -8,7 +8,7 @@
     <div v-show="loadPage == true">
       <div class="app_main">
         <div class="vdo_text_content" v-if="windowWidth > 800">
-          <div class="topic">Media team base in bangkok</div>
+          <div class="topic">Media team base in Thailand</div>
           <div class="content">
             We provide a full production services for commercials, short films,
             video online, documentaries, music videos and branded content.
@@ -83,7 +83,7 @@
         "
       >
         <div class="d-flex justify-center align-center">
-          <div style="color: #fff; font-size: 3.4rem">Service</div>
+          <div style="color: #fff; font-size: 3.4rem">Services</div>
         </div>
         <div class="grid_services">
           <img
