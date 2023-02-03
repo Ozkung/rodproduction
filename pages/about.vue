@@ -22,8 +22,8 @@
         <div class="my-4 detailContact">
           <div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We are
-            a full service production house covering from pre and pro
-            production, production, post production.
+            a full service production house covering from Pre-Pro
+            production, Production and Post production.
           </div>
           <div>
             Our in-house creative team will assist you in consulting and
@@ -33,7 +33,7 @@
           <div>
             Our team can provide the work/service on various scales from
             low-cost budget viral online work to Television commercial
-            adverting.
+            advertising.
           </div>
         </div>
       </div>
