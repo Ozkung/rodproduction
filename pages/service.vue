@@ -289,7 +289,7 @@ export default {
           top: this.$refs.id_backword[val].offsetTop - 60,
           behavior: 'smooth',
         })
-      }, 500)
+      }, 3200)
       this.$store.commit('changeid', 0)
     },
     modalScope(item) {
@@ -354,7 +354,7 @@ export default {
   font-weight: 600;
 }
 .overflow-class {
-  overflow-x: auto;
+  overflow: hidden;
   /*-ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -378,7 +378,7 @@ export default {
   height: calc(100vh - 294.36px);
 }
 .vdocomp {
-  overflow-x: scroll;
+  overflow: hidden;
   display: flex;
   white-space: nowrap;
   &::-webkit-scrollbar {

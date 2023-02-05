@@ -163,7 +163,7 @@ export default {
         'Other',
       ],
       emailTag: 'rod.mpjt@gmail.com',
-      tel: '087-102-9600',
+      tel: '+6687-102-9600',
       validateFrom: false,
       sendingmsg: '',
     }

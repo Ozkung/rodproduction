@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="end_contact">
-      EMAIL : {{ emailTag }} &nbsp; TEL : {{ contactDetail.tel }}
+      EMAIL : {{ contactDetail.emailTag }} &nbsp; TEL : {{ contactDetail.tel }}
     </div>
     <div class="end_credit">©2023 R.O.D PRODUCTION</div>
   </div>
@@ -27,7 +27,7 @@ export default {
         with the clients to ensure it reach objective with limited budget.',
       contactDetail: {
         emailTag: 'rod.mpjt@gmail.com',
-        tel: '087-102-9600',
+        tel: '+6687-102-9600',
       },
     }
   },

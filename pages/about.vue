@@ -22,8 +22,8 @@
         <div class="my-4 detailContact">
           <div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; We are
-            a full service production house covering from Pre-Pro
-            production, Production and Post production.
+            a full service production house covering from Pre-Pro production,
+            Production and Post production.
           </div>
           <div>
             Our in-house creative team will assist you in consulting and
@@ -41,7 +41,7 @@
       <div
         ref="vdoMove"
         class="d-flex hidden-scroll"
-        style="overflow-x: scroll; white-space: nowrap"
+        style="overflow: hidden; white-space: nowrap"
       >
         <div
           style="cursor: pointer"
@@ -114,7 +114,7 @@ export default {
       msgrules: [(value) => !!value || 'Required.'],
       counter: [],
       listCheck: [],
-      cursorG: 'cursor: grab;overflow-x: scroll; white-space: nowrap',
+      cursorG: 'cursor: grab;overflow: hidden; white-space: nowrap',
       dragimg: false,
     }
   },
@@ -208,8 +208,7 @@ export default {
       this.$refs.imgMove.addEventListener('mousedown', () => {
         move = true
         _this.dragimg = move
-        _this.cursorG =
-          'cursor: grabbing;overflow-x: scroll; white-space: nowrap'
+        _this.cursorG = 'cursor: grabbing;overflow: hidden; white-space: nowrap'
       })
       this.$refs.imgMove.addEventListener('mousemove', function (event) {
         if (move == true) {
@@ -219,7 +218,7 @@ export default {
       document.addEventListener('mouseup', () => {
         move = false
         _this.dragimg = move
-        _this.cursorG = 'cursor: grab;overflow-x: scroll; white-space: nowrap'
+        _this.cursorG = 'cursor: grab;overflow: hidden; white-space: nowrap'
       })
 
       let elvdo = this.$refs.vdoMove
