@@ -6,7 +6,9 @@
         <img src="logo.svg" width="70px" @click="rootLink('/contact/')" />
       </div>
     </div>
-    <div class="end_contact">TEL : {{ contactDetail.tel }}</div>
+    <div class="end_contact">
+      EMAIL : {{ emailTag }} &nbsp; TEL : {{ contactDetail.tel }}
+    </div>
     <div class="end_credit">©2023 R.O.D PRODUCTION</div>
   </div>
 </template>
