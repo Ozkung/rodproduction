@@ -614,7 +614,7 @@ export default {
   }
 }
 .vdolisthome {
-  overflow: hidden;
+  overflow: scroll;
   white-space: nowrap;
   align-items: center;
   margin-top: 14px;
@@ -624,7 +624,7 @@ export default {
 }
 
 .imglisthome {
-  overflow: hidden;
+  overflow: scroll;
   white-space: nowrap;
   align-items: center;
   &::-webkit-scrollbar {

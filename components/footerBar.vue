@@ -86,6 +86,7 @@ export default {
   justify-content: center;
   align-items: center;
   color: #fff;
+  background: #000;
   font-size: 20px;
 }
 .end_credit {

@@ -378,7 +378,7 @@ export default {
   height: calc(100vh - 294.36px);
 }
 .vdocomp {
-  overflow: hidden;
+  overflow: scroll;
   display: flex;
   white-space: nowrap;
   &::-webkit-scrollbar {

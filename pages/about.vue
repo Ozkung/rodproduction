@@ -41,7 +41,7 @@
       <div
         ref="vdoMove"
         class="d-flex hidden-scroll"
-        style="overflow: hidden; white-space: nowrap"
+        style="overflow: scroll; white-space: nowrap"
       >
         <div
           style="cursor: pointer"
@@ -114,7 +114,7 @@ export default {
       msgrules: [(value) => !!value || 'Required.'],
       counter: [],
       listCheck: [],
-      cursorG: 'cursor: grab;overflow: hidden; white-space: nowrap',
+      cursorG: 'cursor: grab;overflow: scroll; white-space: nowrap',
       dragimg: false,
     }
   },
@@ -208,7 +208,7 @@ export default {
       this.$refs.imgMove.addEventListener('mousedown', () => {
         move = true
         _this.dragimg = move
-        _this.cursorG = 'cursor: grabbing;overflow: hidden; white-space: nowrap'
+        _this.cursorG = 'cursor: grabbing;overflow: scroll; white-space: nowrap'
       })
       this.$refs.imgMove.addEventListener('mousemove', function (event) {
         if (move == true) {
@@ -218,7 +218,7 @@ export default {
       document.addEventListener('mouseup', () => {
         move = false
         _this.dragimg = move
-        _this.cursorG = 'cursor: grab;overflow: hidden; white-space: nowrap'
+        _this.cursorG = 'cursor: grab;overflow: scroll; white-space: nowrap'
       })
 
       let elvdo = this.$refs.vdoMove

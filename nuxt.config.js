@@ -62,7 +62,7 @@ export default {
           port: 25,
           auth: {
             user: 'rod.mpjt@gmail.com',
-            pass: 'gcfrwbkkuprgcidu',
+            pass: process.env.TEST_PASS,
           },
         },
       },
@@ -101,9 +101,5 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: false,
-  },
-  env: {
-    EMAIL_USER: 'plugplayon@gmail.com',
-    EMAIL_PASS: 'nmgtwridwhzpdkfr',
   },
 }
