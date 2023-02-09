@@ -207,6 +207,7 @@ export default {
       windowWidth: window.innerWidth,
       dragimg: true,
       cursorG: 'cursor: grab',
+      titleHome: {},
     }
   },
   watch: {
@@ -215,6 +216,9 @@ export default {
     },
   },
   computed: {
+    titlehome() {
+      return this.$store.state.homepage
+    },
     listVDO() {
       return this.$store.state.youtube
     },
@@ -287,12 +291,23 @@ export default {
         // document.getElementById('convdo').setAttribute('autoplay', 'autoplay')
       })
     }, 3000)
+
+    // get data from base
+    this.dataHome()
+    console.log('this. :', this.titlehome)
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScroll)
     window.removeEventListener('resize', this.onResize)
   },
   methods: {
+    async dataHome() {
+      try {
+        await this.$store.dispatch('homepage1')
+      } catch (e) {
+        console.log('e :', e)
+      }
+    },
     dragable() {
       let _this = this
       let elImg = this.$refs.imgMove

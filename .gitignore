@@ -90,3 +90,4 @@ sw.*
 .nuxt
 *.swp
 node_modules/
+SSL.txt
