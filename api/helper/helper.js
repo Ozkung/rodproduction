@@ -6,6 +6,12 @@ const find = async function(collection, model) {
     return getAll
 }
 
+// Get some data
+const findOne = async function(collection, model, object) {
+    let findOne = await mongoose.model(collection, model).find(object)
+    return findOne
+}
+
 // Save data
 const create = async function(collection, model, data) {
  await mongoose.model(collection, model).create(data)
@@ -15,5 +21,6 @@ const create = async function(collection, model, data) {
 
 module.exports = {
     create,
-    find
+    find,
+    findOne
 }

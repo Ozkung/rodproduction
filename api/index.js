@@ -3,7 +3,8 @@ const app = express()
 const { default: mongoose } = require('mongoose')
 const moment = require('moment')
 const text = require('./model/text')
-const {create, find} = require('./helper/helper')
+const user = require('./model/user')
+const {create, find, findOne} = require('./helper/helper')
 
 mongoose.set('strictQuery', false)
 // Mongo DB Connections
@@ -28,9 +29,12 @@ app.get('/hello', (req, res) => {
   res.json({ message: process.env.EMAIL_USER })
 })
 
-app.post('/login', (req, res) => {
-  const { user, pass } = req.body
-  res.send(req.body)
+app.post('/login', async function (req, res) {
+  const { username, password } = req.body
+  let finder = await findOne('users', user, {username: username})
+  console.log('finder', finder)
+  if(finder[0].password == password) return res.json({message:finder[0]._id})
+  else res.send('Something Worng')
 })
 
 app.route('/textHome')
