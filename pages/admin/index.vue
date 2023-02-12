@@ -37,14 +37,18 @@ export default {
     }
   },
   mounted() {
-    console.log('session', sessionStorage.getItem('user'))
+    if (sessionStorage.getItem('Userkey').length) {
+      console.log('object validate')
+    }
   },
   methods: {
-    login() {
+    async login() {
       let obj = {
-        username: this.username,
-        password: this.password,
+        username: this.username.trim().replace(`',"`, ''),
+        password: this.password.trim().replace(`',"`, ''),
       }
+      let res = await this.$axios.post('login', obj)
+      sessionStorage.setItem('Userkey', res.data.message)
     },
   },
 }
