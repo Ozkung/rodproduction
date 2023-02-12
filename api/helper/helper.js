@@ -1,12 +1,19 @@
 const mongoose = require('mongoose')
 
-const create = async function(collection, model, data) {
+// Get all data
+const find = async function(collection, model) {
+    let getAll = await mongoose.model(collection, model).find()
+    return getAll
+}
 
-    // console.log('data', data)
+// Save data
+const create = async function(collection, model, data) {
  await mongoose.model(collection, model).create(data)
  return 'save data'
 }
 
+
 module.exports = {
-    create
+    create,
+    find
 }

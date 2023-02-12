@@ -1,3 +1,4 @@
+
 export const state = () => ({
   youtube: [
     'https://www.youtube.com/embed/DwLMG67bVhg',
@@ -180,25 +181,10 @@ export const state = () => ({
       link: 'https://youtu.be/ZqXl86n7SBk',
     },
   ],
-  homepage: {
-    title1: 'Media team base in Thailand',
-    title2:
-      'We provide a full production services for commercials, short films,video online, documentaries, music videos and branded content.',
-  },
 })
 
 export const mutations = {
   changeid(state, val) {
     state.page_id = val
-  },
-  homeinit(state, val) {
-    state.homepage = val
-  },
-}
-
-export const actions = {
-  async homepage1(context) {
-    let res = await this.$axios.get('textHome')
-    context.commit('homeinit', res.data.message)
   },
 }

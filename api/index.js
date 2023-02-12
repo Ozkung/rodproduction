@@ -3,7 +3,7 @@ const app = express()
 const { default: mongoose } = require('mongoose')
 const moment = require('moment')
 const text = require('./model/text')
-const {create} = require('./helper/helper')
+const {create, find} = require('./helper/helper')
 
 mongoose.set('strictQuery', false)
 // Mongo DB Connections
@@ -33,19 +33,25 @@ app.post('/login', (req, res) => {
   res.send(req.body)
 })
 
-app.post('/textHome',async (req, res) => {
-  const { message , link, type } = req.body
-  // const content = mongoose.model('contentHome',text)
-  let data = {
-    page: link,
-    text: message,
-    type: type,
-    createDate: moment().format('YYYY-MM-DD|hh:mm:ss'),
-    updateDate: moment().format('YYYY-MM-DD|hh:mm:ss')
+app.route('/textHome')
+  .get(async function (req, res) {
+    let obj = await find('contentHome', text)
+    return res.json({object: obj})
+  }) 
+  .post(async function (req, res) {
+    const { message , link, type } = req.body
+    let data = {
+      page: link,
+      text: message,
+      type: type,
+      createDate: moment().format('YYYY-MM-DD|hh:mm:ss'),
+      updateDate: moment().format('YYYY-MM-DD|hh:mm:ss')
+    }
+    await create('contentHome', text, data)
+    
+    res.send('Sucess')
+
   }
-  await create('contentHome', text, data)
-  
-  res.send('Sucess')
-})
+) 
 
 module.exports = app
