@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const { default: mongoose } = require('mongoose')
+const moment = require('moment')
+const text = require('./model/text')
+const {create} = require('./helper/helper')
 
 mongoose.set('strictQuery', false)
 // Mongo DB Connections
@@ -30,12 +33,19 @@ app.post('/login', (req, res) => {
   res.send(req.body)
 })
 
-app.get('/textHome', (req, res) => {
-  let obj = {
-    title1: 'Test1',
-    title2: 'test2',
+app.post('/textHome',async (req, res) => {
+  const { message , link, type } = req.body
+  // const content = mongoose.model('contentHome',text)
+  let data = {
+    page: link,
+    text: message,
+    type: type,
+    createDate: moment().format('YYYY-MM-DD|hh:mm:ss'),
+    updateDate: moment().format('YYYY-MM-DD|hh:mm:ss')
   }
-  res.json({ message: obj })
+  await create('contentHome', text, data)
+  
+  res.send('Sucess')
 })
 
 module.exports = app
