@@ -5,6 +5,11 @@
 <script>
 export default {
   layout: 'blank',
+  mounted() {
+    if (sessionStorage.getItem('Userkey').length == 0) {
+      console.log('redirect to login')
+    }
+  },
 }
 </script>
 
