@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    if (sessionStorage.getItem('Userkey').length) {
+    if (sessionStorage.getItem('Userkey')) {
       console.log('object validate')
     }
   },

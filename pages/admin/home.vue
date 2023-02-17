@@ -6,7 +6,7 @@
 export default {
   layout: 'blank',
   mounted() {
-    if (sessionStorage.getItem('Userkey').length == 0) {
+    if (sessionStorage.getItem('Userkey')) {
       console.log('redirect to login')
     }
   },
