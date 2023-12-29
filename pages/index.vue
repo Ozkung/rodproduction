@@ -8,7 +8,7 @@
     <div v-show="loadPage == true">
       <div class="app_main">
         <div class="vdo_text_content" v-if="windowWidth > 800">
-          <div class="topic">Media team base in Thailand</div>
+          <div class="topic">Media team based in Thailand</div>
           <div class="content">
             We provide a full production services for commercials, short films,
             video online, documentaries, music videos and branded content.
@@ -28,7 +28,7 @@
         </div> -->
         <div class="bgvdo">
           <video id="convdo" width="100%" class="vdo" muted loop playsinline>
-            <source src="Rodreel2021-1.mp4" type="video/mp4" />
+            <source src="Reel2023 3-We.mp4" type="video/mp4" />
           </video>
         </div>
         <!-- <div v-if="windowWidth < 400" class="topic_ab">
@@ -38,7 +38,7 @@
       <!-- word -->
       <div class="my_advice">
         <div class="res_mobile" v-if="windowWidth < 800">
-          <div class="topic">Media team base in bangkok</div>
+          <div class="topic">Media team based in bangkok</div>
           <div class="content">We provide a full production services for</div>
           <div class="content">
             commercials, short films, video online, documentaries, music videos
